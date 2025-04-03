@@ -1,0 +1,22 @@
+{% extends "site_inf/base.html" %}
+{% block title %}Blog - Portal Avançado{% endblock %}
+
+{% block content %}
+<section id="blog" class="blog">
+  <div class="container">
+    <h2>Blog e Notícias</h2>
+    <div class="blog-grid">
+      {% for post in posts %}
+        <article class="blog-item">
+          <h3>{{ post.titulo }}</h3>
+          <p>{{ post.conteudo|truncatewords:30 }}</p>
+          <p><strong>Publicado em:</strong> {{ post.publicado_em|date:"d/m/Y" }}</p>
+          <a href="#" class="btn">Leia Mais</a>
+        </article>
+      {% empty %}
+        <p>Nenhum post encontrado.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

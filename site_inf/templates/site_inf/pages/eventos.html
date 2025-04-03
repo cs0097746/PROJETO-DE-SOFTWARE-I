@@ -1,0 +1,22 @@
+{% extends "site_inf/base.html" %}
+{% block title %}Eventos - Portal Avançado{% endblock %}
+
+{% block content %}
+<section id="eventos" class="events">
+  <div class="container">
+    <h2>Eventos Recentes</h2>
+    <div class="event-list">
+      {% for evento in eventos %}
+        <div class="event-item">
+          <h3>{{ evento.titulo }}</h3>
+          <p>{{ evento.descricao }}</p>
+          <p><strong>Data do Evento:</strong> {{ evento.data_evento|date:"d/m/Y H:i" }}</p>
+          <p><strong>Local:</strong> {{ evento.local }}</p>
+        </div>
+      {% empty %}
+        <p>Nenhum evento encontrado.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

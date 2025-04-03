@@ -1,0 +1,25 @@
+{% extends "site_inf/base.html" %}
+{% block title %}Cursos - Portal Avançado{% endblock %}
+
+{% block content %}
+<section id="cursos" class="courses">
+  <div class="container">
+    <h2>Nossos Cursos</h2>
+    <div class="course-grid">
+      {% for curso in cursos %}
+        <div class="course-item">
+          <h3>{{ curso.nome }}</h3>
+          <p>{{ curso.descricao }}</p>
+          <p><strong>Duração:</strong> {{ curso.duracao }} semestres</p>
+          <p><strong>Data de Início:</strong> {{ curso.data_inicio|date:"d/m/Y" }}</p>
+          {% if curso.data_fim %}
+            <p><strong>Data de Término:</strong> {{ curso.data_fim|date:"d/m/Y" }}</p>
+          {% endif %}
+        </div>
+      {% empty %}
+        <p>Nenhum curso encontrado.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

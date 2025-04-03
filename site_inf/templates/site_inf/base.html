@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  {% include "site_inf/partials/_head.html" %}
+</head>
+<body>
+  {% include "site_inf/partials/_header.html" %}
+  
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+  
+  {% include "site_inf/partials/_footer.html" %}
+</body>
+</html>

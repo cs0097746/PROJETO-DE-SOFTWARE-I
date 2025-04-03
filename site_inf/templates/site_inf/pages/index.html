@@ -1,37 +1,9 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Avançado - SI &amp; CC</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'site_inf/css/style.css' %}">
-  <!-- Importando fonte do Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <!-- Cabeçalho -->
-  <header>
-    <div class="header-container">
-      <div class="logo">
-        <h1>Portal SI &amp; CC</h1>
-      </div>
-      <nav>
-        <ul class="nav-menu">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#cursos">Cursos</a></li>
-          <li><a href="#eventos">Eventos</a></li>
-          <li><a href="#depoimentos">Depoimentos</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#projetos">Projetos</a></li>
-          <li><a href="#redes">Redes Sociais</a></li>
-          <li><a href="#forum">Fórum</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+{% extends "site_inf/base.html" %}
+{% load static %}
 
+{% block title %}Home - Portal Avançado - SI &amp; CC{% endblock %}
+
+{% block content %}
   <!-- Seção Hero (Banner Principal) -->
   <section id="home" class="hero">
     <div class="hero-overlay"></div>
@@ -149,11 +121,11 @@
     </div>
   </section>
 
+  <!-- Seção Conecte -->
   <section id="conecte" class="connect">
     <div class="container">
       <h2>Conecte-se com a Comunidade</h2>
       <div class="connect-grid">
-        <!-- Redes Sociais -->
         <div class="connect-item">
           <h3>Redes Sociais</h3>
           <p>Siga-nos nas redes sociais para ficar por dentro das novidades.</p>
@@ -163,15 +135,11 @@
             <a href="#" class="social-btn instagram">Instagram</a>
           </div>
         </div>
-  
-        <!-- Fórum Aberto -->
         <div class="connect-item">
           <h3>Fórum Aberto</h3>
           <p>Participe de discussões e troque ideias com a comunidade acadêmica.</p>
           <a href="#" class="btn">Acessar Fórum</a>
         </div>
-  
-        <!-- Contato -->
         <div class="connect-item">
           <h3>Contato</h3>
           <p>Entre em contato conosco para mais informações e suporte.</p>
@@ -180,5 +148,4 @@
       </div>
     </div>
   </section>
-  
-</html>
+{% endblock %}

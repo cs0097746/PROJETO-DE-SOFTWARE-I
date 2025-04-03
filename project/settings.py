@@ -127,3 +127,7 @@ MEDIA_ROOT = DATA_DIR / 'media'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'chris0097746@gmail.com'
+CONTACT_EMAIL = 'chris0097746@gmail.com'
