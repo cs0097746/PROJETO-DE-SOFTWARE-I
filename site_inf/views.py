@@ -45,3 +45,6 @@ def contato(request):
         form = ContatoForm()
     
     return render(request, 'site_inf/pages/contato.html', {'form': form})
+
+def home(request):
+    return render(request, 'index.html')
