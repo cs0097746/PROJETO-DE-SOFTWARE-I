@@ -2,19 +2,20 @@
 {% block title %}Blog - Portal Avançado{% endblock %}
 
 {% block content %}
-<section id="blog" class="blog">
+<section id="blog" class="blog" style="padding: 4rem 1rem; background-color: #f5f5f5;">
   <div class="container">
-    <h2>Blog e Notícias</h2>
-    <div class="blog-grid">
+    <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Blog e Notícias</h2>
+    
+    <div class="blog-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
       {% for post in posts %}
-        <article class="blog-item">
-          <h3>{{ post.titulo }}</h3>
-          <p>{{ post.conteudo|truncatewords:30 }}</p>
-          <p><strong>Publicado em:</strong> {{ post.publicado_em|date:"d/m/Y" }}</p>
-          <a href="#" class="btn">Leia Mais</a>
+        <article class="blog-item" style="background: white; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); padding: 1.5rem;">
+          <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">{{ post.titulo }}</h3>
+          <p style="color: #555;">{{ post.conteudo|truncatewords:30 }}</p>
+          <p style="font-size: 0.9rem; color: #888;"><strong>Publicado em:</strong> {{ post.publicado_em|date:"d/m/Y" }}</p>
+          <a href="{% url 'site_inf:post_detail' post.id %}" class="btn" style="margin-top: 1rem; display: inline-block; background-color: #007bff; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 6px;">Leia Mais</a>
         </article>
       {% empty %}
-        <p>Nenhum post encontrado.</p>
+        <p style="text-align: center;">Nenhum post encontrado.</p>
       {% endfor %}
     </div>
   </div>

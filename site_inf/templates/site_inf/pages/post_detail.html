@@ -1,0 +1,21 @@
+{% extends "site_inf/base.html" %}
+{% block title %}{{ post.titulo }} - Blog{% endblock %}
+
+{% block content %}
+<section id="post-detalhe" class="blog-detail" style="padding: 4rem 1rem;">
+  <div class="container" style="max-width: 800px; margin: 0 auto;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">{{ post.titulo }}</h2>
+    <p style="color: #888; margin-bottom: 2rem;"><strong>Publicado em:</strong> {{ post.publicado_em|date:"d/m/Y" }}</p>
+
+    {% if post.imagem %}
+      <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 2rem;">
+    {% endif %}
+
+    <div class="conteudo" style="font-size: 1.1rem; color: #333; line-height: 1.8;">
+      {{ post.conteudo|linebreaks }}
+    </div>
+
+    <a href="{% url 'site_inf:blog' %}" class="btn" style="display: inline-block; margin-top: 2rem; background-color: #007bff; color: white; padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none;">← Voltar para o blog</a>
+  </div>
+</section>
+{% endblock %}

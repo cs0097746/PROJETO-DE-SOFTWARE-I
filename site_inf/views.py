@@ -1,7 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Curso, Evento, PostBlog
-from .forms import ContatoForm
-from .utils_email import enviar_email
 
 def index(request):
     return render(request, 'site_inf/pages/index.html')
@@ -22,29 +20,6 @@ def projetos(request):
     # Por enquanto, podemos renderizar um template simples para projetos.
     return render(request, 'site_inf/pages/projetos.html')
 
-
-from django.shortcuts import redirect
-from .forms import ContatoForm
-from .utils_email import enviar_email  # Importe a função criada
-
-def contato(request):
-    if request.method == 'POST':
-        form = ContatoForm(request.POST)
-        if form.is_valid():
-            mensagem_obj = form.save()  # Salva a mensagem no banco de dados, se desejar
-
-            # Envia o e-mail utilizando os dados do formulário
-            enviar_email(
-                nome=mensagem_obj.nome,
-                assunto="Nova mensagem de contato enviada pelo site",
-                mensagem=mensagem_obj.mensagem,
-                destinatario='destinatario@exemplo.com'  # ou use uma variável/configuração
-            )
-            return redirect('site_inf:contato')  # Redireciona ou exibe uma página de sucesso
-    else:
-        form = ContatoForm()
-    
-    return render(request, 'site_inf/pages/contato.html', {'form': form})
-
-def home(request):
-    return render(request, 'index.html')
+def post_detail(request, post_id):
+    post = get_object_or_404(PostBlog, id=post_id)
+    return render(request, 'site_inf/pages/post_detail.html', {'post': post})
