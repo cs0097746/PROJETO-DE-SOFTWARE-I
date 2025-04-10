@@ -1,12 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Curso, Evento, PostBlog
+from .models import Evento, PostBlog
 
 def index(request):
     return render(request, 'site_inf/pages/index.html')
-
-def cursos(request):
-    cursos = Curso.objects.all()
-    return render(request, 'site_inf/pages/cursos.html', {'cursos': cursos})
 
 def eventos(request):
     eventos = Evento.objects.all()
@@ -23,3 +19,9 @@ def projetos(request):
 def post_detail(request, post_id):
     post = get_object_or_404(PostBlog, id=post_id)
     return render(request, 'site_inf/pages/post_detail.html', {'post': post})
+
+def sistemas_info(request):
+    return render(request, 'site_inf/pages/curso_sistemas_info.html')
+
+def ciencia_computacao(request):
+    return render(request, 'site_inf/pages/curso_ciencia_computacao.html')

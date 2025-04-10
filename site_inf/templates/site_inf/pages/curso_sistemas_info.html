@@ -1,0 +1,37 @@
+{% extends "site_inf/base.html" %}
+{% block title %}Sistemas de Informação{% endblock %}
+
+{% block content %}
+<section class="curso-detalhe" style="padding: 4rem 1rem; background-color: #f9f9f9;">
+  <div class="container" style="max-width: 900px; margin: auto; background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 2.2rem; margin-bottom: 1rem; color: #333;">Sistemas de Informação</h2>
+    
+    <p style="font-size: 1.05rem; line-height: 1.8; color: #444;">
+      O curso de Sistemas de Informação está localizado em <strong>Campus Camobi – UFSM</strong> na modalidade <strong>Bacharelado – Presencial</strong> sendo <strong>Diurno</strong> o seu turno de funcionamento.
+      A área de conhecimento do curso é classificada como <strong>CIÊNCIAS EXATAS E DA TERRA</strong>.
+    </p>
+
+    <hr>
+
+    <h3 style="margin-top: 2rem;">Coordenação</h3>
+    <ul style="line-height: 1.8; color: #333;">
+      <li><strong>Coordenador:</strong> Antonio Marcos de Oliveira Candia</li>
+      <li><strong>Coordenação Substituta:</strong> Marcia Pasin</li>
+      <li><strong>Secretaria:</strong> Marcelo Roberto Becker</li>
+    </ul>
+
+    <h3 style="margin-top: 2rem;">Informações Acadêmicas</h3>
+    <p>
+      O curso é ofertado em <strong>período Semestral</strong>, sendo <strong>8 períodos</strong> o número indicado para sua conclusão.
+    </p>
+
+    <h3 style="margin-top: 2rem;">Reconhecimento</h3>
+    <p>
+      Reconhecido pela <strong>Portaria n. 516/2013/MEC</strong>, publicada no DOU em <em>16/10/2013</em> e <br>
+      pela <strong>Portaria n. 153/2023/MEC</strong>, publicada no DOU em <em>22/06/2023</em>.
+    </p>
+
+    <a href="{% url 'site_inf:index' %}" class="btn" style="margin-top: 2rem; display: inline-block; background-color: #007bff; color: white; padding: 0.7rem 1.5rem; border-radius: 8px; text-decoration: none;">← Voltar para os Cursos</a>
+  </div>
+</section>
+{% endblock %}
