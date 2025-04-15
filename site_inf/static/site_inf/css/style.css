@@ -489,3 +489,42 @@ footer {
 .social-btn:hover {
   opacity: 0.85;
 }
+
+.projeto-detalhe .detail-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  margin-top: 2rem;
+}
+
+@media(min-width: 768px) {
+  .projeto-detalhe .detail-card {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.detail-img {
+  max-width: 100%;
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.detail-content {
+  flex: 1;
+}
+
+.detail-content h2 {
+  margin-bottom: 0.5rem;
+}
+
+.detail-content .btn {
+  margin-top: 1rem;
+  display: inline-block;
+}

@@ -1,0 +1,23 @@
+{% extends "site_inf/base.html" %}
+{% block title %}{{ projeto.titulo }} - Projeto{% endblock %}
+
+{% block content %}
+<section class="projeto-detalhe">
+  <div class="container">
+    <div class="detail-card">
+      {% if projeto.imagem %}
+        <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}" class="detail-img">
+      {% endif %}
+      <div class="detail-content">
+        <h2>{{ projeto.titulo }}</h2>
+        <p class="tech"><strong>Tecnologias usadas:</strong> {{ projeto.tecnologias }}</p>
+        <p>{{ projeto.descricao }}</p>
+        {% if projeto.link %}
+          <p><a href="{{ projeto.link }}" target="_blank" class="btn">Ver no GitHub</a></p>
+        {% endif %}
+        <a href="{% url 'site_inf:projetos' %}" class="btn">← Voltar</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

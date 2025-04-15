@@ -1,4 +1,4 @@
-from site_inf.views import index, blog, projetos, eventos, post_detail
+from site_inf.views import index, blog, projetos, eventos, post_detail, projeto_detail
 from site_inf.views import sistemas_info ,ciencia_computacao
 from django.urls import path
 
@@ -15,5 +15,7 @@ urlpatterns = [
     path('projetos/', projetos, name='projetos'),
     path('sistemas-informacao/', sistemas_info, name='sistemas_info'),
     path('ciencia-computacao/', ciencia_computacao, name='ciencia_computacao'),
+    path('projetos/', projetos, name='projetos'),
+    path('projetos/<int:projeto_id>/', projeto_detail, name='projeto_detail'),
 
 ]

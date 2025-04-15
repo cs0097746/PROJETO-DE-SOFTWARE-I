@@ -148,30 +148,36 @@
     </div>
   </section>
 
-  <!-- Seção Projetos -->
-  <section id="projetos" class="projects">
-    <div class="container">
-      <h2>Projetos Destacados</h2>
-      <div class="project-grid">
+<!-- Seção Projetos Acadêmicos -->
+<section id="projetos" class="projects">
+  <div class="container">
+    <h2>Projetos Acadêmicos</h2>
+    <div class="project-grid">
+      {% for projeto in projetos|slice:":3" %}
         <div class="project-item">
-          <img src="{% static 'site_inf/images/projeto1.jpg' %}" alt="Projeto 1">
-          <div class="project-content">
-            <h3>Projeto Inovador 1</h3>
-            <p>Descrição breve do projeto e sua relevância.</p>
-            <a href="#" class="btn">Saiba Mais</a>
+          <div class="card">
+            {% if projeto.imagem %}
+              <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}" class="card-img">
+            {% else %}
+              <img src="{% static 'site_inf/images/placeholder.jpg' %}" alt="Sem imagem" class="card-img">
+            {% endif %}
+            <div class="card-body">
+              <h3>{{ projeto.titulo }}</h3>
+              <p class="tech"><strong>Tecnologias:</strong> {{ projeto.tecnologias }}</p>
+              <p>{{ projeto.descricao|truncatewords:25 }}</p>
+              <a href="{% url 'site_inf:projeto_detail' projeto.id %}" class="btn">Saiba Mais</a>
+            </div>
           </div>
         </div>
-        <div class="project-item">
-          <img src="{% static 'site_inf/images/projeto2.jpg' %}" alt="Projeto 2">
-          <div class="project-content">
-            <h3>Projeto Inovador 2</h3>
-            <p>Descrição breve do projeto e como ele impacta a comunidade acadêmica.</p>
-            <a href="#" class="btn">Saiba Mais</a>
-          </div>
-        </div>
-      </div>
+      {% empty %}
+        <p>Nenhum projeto cadastrado ainda.</p>
+      {% endfor %}
     </div>
-  </section>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="{% url 'site_inf:projetos' %}" class="btn">Ver Todos os Projetos</a>
+    </div>
+  </div>
+</section>
 
   <!-- Seção Conecte -->
   <section id="conecte" class="connect">

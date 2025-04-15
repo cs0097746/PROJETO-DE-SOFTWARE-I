@@ -1,0 +1,29 @@
+{% extends "site_inf/base.html" %}
+{% block title %}Projetos Acadêmicos{% endblock %}
+
+{% block content %}
+<section class="projects">
+  <div class="container">
+    <h2>Projetos Acadêmicos</h2>
+    <div class="project-grid">
+        {% for projeto in projetos %}
+          <div class="project-item">
+            <div class="card">
+              {% if projeto.imagem %}
+                <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}">
+              {% endif %}
+              <div class="card-body">
+                <h3>{{ projeto.titulo }}</h3>
+                <p class="tech"><strong>Tecnologias:</strong> {{ projeto.tecnologias }}</p>
+                <p>{{ projeto.descricao|truncatewords:25 }}</p>
+                <a href="{% url 'site_inf:projeto_detail' projeto.id %}" class="btn">Saiba Mais</a>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <p>Nenhum projeto encontrado.</p>
+        {% endfor %}
+      </div>
+  </div>
+</section>
+{% endblock %}
