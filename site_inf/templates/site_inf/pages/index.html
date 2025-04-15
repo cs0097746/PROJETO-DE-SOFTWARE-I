@@ -148,36 +148,38 @@
     </div>
   </section>
 
-<!-- Seção Projetos Acadêmicos -->
-<section id="projetos" class="projects">
-  <div class="container">
-    <h2>Projetos Acadêmicos</h2>
-    <div class="project-grid">
-      {% for projeto in projetos|slice:":3" %}
-        <div class="project-item">
-          <div class="card">
-            {% if projeto.imagem %}
-              <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}" class="card-img">
-            {% else %}
-              <img src="{% static 'site_inf/images/placeholder.jpg' %}" alt="Sem imagem" class="card-img">
-            {% endif %}
-            <div class="card-body">
-              <h3>{{ projeto.titulo }}</h3>
-              <p class="tech"><strong>Tecnologias:</strong> {{ projeto.tecnologias }}</p>
-              <p>{{ projeto.descricao|truncatewords:25 }}</p>
-              <a href="{% url 'site_inf:projeto_detail' projeto.id %}" class="btn">Saiba Mais</a>
+  <!-- Seção projeto -->
+  <section id="projetos" class="projects">
+    <div class="container">
+      <h2 class="section-title">Projetos Acadêmicos</h2>
+      <div class="project-grid">
+        {% for projeto in projetos|slice:":3" %}
+          <div class="project-item">
+            <div class="card">
+              <div class="card-image">
+                {% if projeto.imagem and projeto.imagem.url %}
+                  <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}">
+                {% else %}
+                  <img src="{% static 'site_inf/images/placeholder.jpg' %}" alt="Sem imagem">
+                {% endif %}
+              </div>
+              <div class="card-content">
+                <h3 class="card-title">{{ projeto.titulo }}</h3>
+                <p class="card-description">{{ projeto.descricao|truncatewords:20 }}</p>
+                <a href="{% url 'site_inf:projeto_detail' projeto.id %}" class="btn">Saiba Mais</a>
+              </div>
             </div>
           </div>
-        </div>
-      {% empty %}
-        <p>Nenhum projeto cadastrado ainda.</p>
-      {% endfor %}
+        {% empty %}
+          <p class="no-projects">Nenhum projeto cadastrado ainda.</p>
+        {% endfor %}
+      </div>
+      <!-- Botão fora da grid -->
+      <div class="view-all">
+        <a href="{% url 'site_inf:projetos' %}" class="btn">Ver Todos os Projetos</a>
+      </div>
     </div>
-    <div style="text-align: center; margin-top: 2rem;">
-      <a href="{% url 'site_inf:projetos' %}" class="btn">Ver Todos os Projetos</a>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- Seção Conecte -->
   <section id="conecte" class="connect">

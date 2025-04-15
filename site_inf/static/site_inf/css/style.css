@@ -490,41 +490,196 @@ footer {
   opacity: 0.85;
 }
 
-.projeto-detalhe .detail-card {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  margin-top: 2rem;
+.projects {
+  padding: 60px 0 80px 0;
+  background: #f9f9f9;
+  text-align: center;
 }
 
-@media(min-width: 768px) {
-  .projeto-detalhe .detail-card {
-    flex-direction: row;
-    align-items: flex-start;
-  }
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-bottom: 48px; /* Espaço extra abaixo da grid */
+}
+
+.project-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.13);
+}
+
+.card-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: #e0e0e0;
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  text-align: left;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+
+.card-content .btn {
+  align-self: flex-start;
+  background: #004080;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.card-content .btn:hover {
+  background: #003066;
+}
+
+.view-all {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.view-all .btn {
+  background: #004080;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: background 0.3s;
+}
+
+.view-all .btn:hover {
+  background: #003066;
+}
+
+/* Projeto Detail Moderno e Centralizado */
+.project-detail-section {
+  padding: 60px 0;
+  background: #f4f8fb;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-detail-container {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.12);
+  padding: 36px 28px 32px 28px;
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .detail-img {
-  max-width: 100%;
-  width: 300px;
-  height: auto;
-  border-radius: 10px;
+  width: 180px;
+  height: 180px;
   object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  background: #e0e0e0;
+  display: block;
 }
 
 .detail-content {
-  flex: 1;
+  width: 100%;
+  text-align: center;
 }
 
-.detail-content h2 {
-  margin-bottom: 0.5rem;
+.detail-title {
+  font-size: 2rem;
+  color: #004080;
+  margin-bottom: 12px;
+  font-weight: 700;
 }
 
-.detail-content .btn {
-  margin-top: 1rem;
+.tech {
+  color: #555;
+  font-size: 1.08rem;
+  margin-bottom: 18px;
+}
+
+.detail-description {
+  color: #444;
+  font-size: 1.08rem;
+  margin-bottom: 28px;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+.detail-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.btn {
+  background: linear-gradient(90deg, #004080 60%, #0059b3 100%);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  transition: background 0.3s, transform 0.2s;
   display: inline-block;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.btn:hover {
+  background: linear-gradient(90deg, #003066 60%, #004080 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.btn-back {
+  background: #888;
+  background: linear-gradient(90deg, #888 60%, #aaa 100%);
+}
+
+.btn-back:hover {
+  background: #555;
+  background: linear-gradient(90deg, #555 60%, #888 100%);
 }
