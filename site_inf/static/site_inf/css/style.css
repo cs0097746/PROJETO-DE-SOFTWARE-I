@@ -11,6 +11,16 @@ body {
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1;
+}
+
 /* Container para centralização */
 .container {
   width: 90%;
@@ -113,7 +123,18 @@ header {
   background: #99ccff;
   transform: translateY(-2px);
 }
+/* Seção carrossel */
+.noticias {
+  padding: 30px 0;
+  background: #fff;
+  text-align: center;
+}
 
+.noticias h2 {
+  font-size: 2rem;         /* Tamanho da fonte */
+  margin-bottom: 5px;     /* Margem inferior */
+  color: #333;             /* Cor do texto */
+}
 /* Seção Cursos */
 .courses {
   padding: 60px 0;
@@ -408,7 +429,6 @@ footer {
   margin: 0 auto;
 }
 
-
 .connect {
   padding: 60px 0;
   background: #fff;
@@ -682,4 +702,76 @@ footer {
 .btn-back:hover {
   background: #555;
   background: linear-gradient(90deg, #555 60%, #888 100%);
+}
+
+.btn-extensao {
+  background: linear-gradient(90deg, #004080 60%, #0059b3 100%);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  transition: background 0.3s, transform 0.2s;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  position:fixed;
+  bottom: 100px; 
+  right: 20px; 
+  z-index: 1000; 
+}
+
+/* ===== Extensão e Projetos de Extensão ===== */
+.extensao {
+  padding: 40px 20px;
+  background: #fafafa;
+  color: #333;
+}
+.extensao h2 {
+  font-size: 1.8rem;
+  color: #004080;
+  margin-bottom: 20px;
+}
+
+/* container de botões na página principal */
+.extensao .btn-container {
+  margin-top: 5px;
+}
+.extensao .btn-container .btn {
+  margin: 0 8px;
+}
+
+/* Projetos */
+.extensao-projetos .projeto-item {
+  background: #f5f5f5;
+  padding: 1px 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: normal;       /* impede nowrap */
+  margin: 4px 0;
+  line-height: 1.4;
+}
+.extensao-projetos .projeto-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 0 0 10px;
+}
+.extensao-projetos p {
+  margin: 4px 0;
+  line-height: 1.4;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.extensao .btn-container {
+  margin-top: 20px;     /* Espaço entre o texto e os botões */
+}
+.extensao .btn {
+  margin-right: 12px;   /* Espaço entre os botões */
 }

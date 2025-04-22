@@ -1,0 +1,19 @@
+{% extends "site_inf/base.html" %}
+{% block title %}Extensão{% endblock %}
+
+{% block content %}
+<section class="extensao extensao-projetos">
+  <div class="container">
+    <h2>Extensão</h2>
+    <p>A Pró-Reitoria de Extensão (PRE) visa ao fortalecimento da relação Universidade-Comunidade e tem a missão de articular os diversos conhecimentos por meio de ações extensionistas junto à população, gerando soluções inovadoras para o desenvolvimento regional sustentável.
+
+        Seus princípios são pluralidade, respeito, transparência, sustentabilidade, equidade e justiça.</p>
+        
+    <div class="btn-container">
+      <a href="{% url 'site_inf:extensao_projetos' %}" class="btn">Projetos de Extensão</a>
+      <a href="{% url 'site_inf:extensao_inscricoes' %}" class="btn">Inscrições</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

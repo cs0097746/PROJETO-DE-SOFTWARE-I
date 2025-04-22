@@ -8,13 +8,12 @@
   <section id="home" class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h2>Bem-vindo ao Portal Avançado</h2>
+      <h2>Bem-vindo ao Portal da Computação</h2>
       <p>Conectando alunos, professores e entusiastas da tecnologia.</p>
       <a href="#cursos" class="btn">Conheça os Cursos</a>
     </div>
   </section>
 
-  <!-- Seção carrossel -->
   {% load static %}
   <!DOCTYPE html>
   <html lang="pt-br">
@@ -24,46 +23,59 @@
       <link rel="stylesheet" href="{% static 'site_inf/css/slider.css' %}">
   </head>
   <body>
-      
-    <div class="slider">
-      <div class="list">
-          <div class="item">
-              <img src="{% static 'image1.jpg' %}" alt="1">
-              <div class="caption">
-                  <h2>Título Notícia/Projeto/Etc</h2>
-                  <p>Descrição da Notícia, do Projeto, etc.</p>
+  
+      <!-- Título "Notícias" com o mesmo estilo da seção -->
+      <section class="noticias">
+          <div class="container">
+              <h2>Notícias</h2> <!-- Estilo semelhante à outras seções -->
+          </div>
+      </section>
+  
+      <!-- Seção carrossel -->
+      <div class="slider">
+          <div class="list">
+              <div class="item">
+                  <img src="{% static 'image1.jpg' %}" alt="1">
+                  <div class="caption">
+                      <h2>Título Notícia/Projeto/Etc</h2>
+                      <p>Descrição da Notícia, do Projeto, etc.</p>
+                      <p class="date">Data: 01/01/2025</p> <!-- Campo de data -->
+                  </div>
+              </div>
+              <div class="item">
+                  <img src="{% static 'image2.jpg' %}" alt="2">
+                  <div class="caption">
+                      <h2>Título da Imagem 2</h2>
+                      <p>Descrição da imagem 2.</p>
+                      <p class="date">Data: 02/01/2025</p> <!-- Campo de data -->
+                  </div>
+              </div>
+              <div class="item">
+                  <img src="{% static 'image3.jpg' %}" alt="3">
+                  <div class="caption">
+                      <h2>Título da Imagem 3</h2>
+                      <p>Descrição da imagem 3.</p>
+                      <p class="date">Data: 03/01/2025</p> <!-- Campo de data -->
+                  </div>
               </div>
           </div>
-          <div class="item">
-              <img src="{% static 'image2.jpg' %}" alt="2">
-              <div class="caption">
-                  <h2>Título da Imagem 2</h2>
-                  <p>Descrição da imagem 2.</p>
-              </div>
+  
+          <div class="buttons">
+              <button id="prev"><</button>
+              <button id="next">></button>
           </div>
-          <div class="item">
-              <img src="{% static 'image3.jpg' %}" alt="3">
-              <div class="caption">
-                  <h2>Título da Imagem 3</h2>
-                  <p>Descrição da imagem 3.</p>
-              </div>
-          </div>
+          <ul class="dots">
+              <li class="active"></li>
+              <li></li>
+              <li></li>
+          </ul>
       </div>
   
-      <div class="buttons">
-        <button id="prev"><</button>
-        <button id="next">></button>
-      </div>
-      <ul class="dots">
-          <li class="active"></li>
-          <li></li>
-          <li></li>
-      </ul>
-  </div>
-
-  <script src="{% static 'site_inf/js/slider.js' %}"></script>
-</body>
-</html>
+      <script src="{% static 'site_inf/js/slider.js' %}"></script>
+  </body>
+  </html>
+  
+  
   
 
   <!-- Seção Cursos -->
@@ -197,7 +209,7 @@
         <div class="connect-item">
           <h3>Fórum Aberto</h3>
           <p>Participe de discussões e troque ideias com a comunidade acadêmica.</p>
-          <a href="#" class="btn">Acessar Fórum</a>
+          <a href="{% url 'site_inf:forum' %}" class="btn">Acessar Fórum</a>
         </div>
         <div class="connect-item">
           <h3>Contato</h3>

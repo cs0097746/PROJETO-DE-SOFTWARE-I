@@ -32,3 +32,15 @@ def projetos(request):
 def projeto_detail(request, projeto_id):
     projeto = get_object_or_404(Projeto, id=projeto_id)
     return render(request, 'site_inf/pages/projeto_detail.html', {'projeto': projeto})
+
+def forum(request):
+    return render(request, 'site_inf/pages/forum.html')
+
+def extensao(request):
+    return render(request, 'site_inf/pages/extensao.html')
+
+def extensao_projetos(request):
+    return render(request, 'site_inf/pages/extensao_projetos.html')
+
+def extensao_inscricoes(request):
+    return render(request, 'site_inf/pages/extensao_inscricoes.html')
