@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Evento, PostBlog, Projeto
 
 def index(request):
-    from .models import Projeto
+    posts = PostBlog.objects.all().order_by('-id')
     projetos = Projeto.objects.all().order_by('-criado_em')[:3]
-    return render(request, 'site_inf/pages/index.html', {'projetos': projetos})
+    return render(request, 'site_inf/pages/index.html', {'projetos': projetos, 'posts': posts})
 
 
 def eventos(request):

@@ -14,6 +14,32 @@
     </div>
   </section>
 
+
+  <!-- Seção Cursos -->
+  <section id="cursos" class="courses">
+    <div class="container">
+      <h2>Nossos Cursos</h2>
+      <div class="course-grid">
+        <div class="course-item">
+          <img src="{% static 'site_inf/images/sistemas-info.jpg' %}" alt="Sistemas de Informação">
+          <div class="course-content">
+            <h3>Sistemas de Informação</h3>
+            <p>Conheça o curso, suas disciplinas e as oportunidades de carreira.</p>
+            <a href="{% url 'site_inf:sistemas_info' %}" class="btn">Saiba Mais</a>
+          </div>
+        </div>
+        <div class="course-item">
+          <img src="{% static 'site_inf/images/sistemas-info.jpg' %}" alt="Ciência da Computação">
+          <div class="course-content">
+            <h3>Ciência da Computação</h3>
+            <p>Explore o universo da programação, algoritmos e inovação tecnológica.</p>
+            <a href="{% url 'site_inf:ciencia_computacao' %}" class="btn">Saiba Mais</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   {% load static %}
   <!DOCTYPE html>
   <html lang="pt-br">
@@ -27,7 +53,8 @@
       <!-- Título "Notícias" com o mesmo estilo da seção -->
       <section class="noticias">
           <div class="container">
-              <h2>Notícias</h2> <!-- Estilo semelhante à outras seções -->
+              <h2>Notícias e Projetos</h2>
+              <p>Fique por dentro das últimas novidades e projetos desenvolvidos.</p>
           </div>
       </section>
   
@@ -75,33 +102,6 @@
   </body>
   </html>
   
-  
-  
-
-  <!-- Seção Cursos -->
-  <section id="cursos" class="courses">
-    <div class="container">
-      <h2>Nossos Cursos</h2>
-      <div class="course-grid">
-        <div class="course-item">
-          <img src="{% static 'site_inf/images/sistemas-info.jpg' %}" alt="Sistemas de Informação">
-          <div class="course-content">
-            <h3>Sistemas de Informação</h3>
-            <p>Conheça o curso, suas disciplinas e as oportunidades de carreira.</p>
-            <a href="{% url 'site_inf:sistemas_info' %}" class="btn">Saiba Mais</a>
-          </div>
-        </div>
-        <div class="course-item">
-          <img src="{% static 'site_inf/images/sistemas-info.jpg' %}" alt="Ciência da Computação">
-          <div class="course-content">
-            <h3>Ciência da Computação</h3>
-            <p>Explore o universo da programação, algoritmos e inovação tecnológica.</p>
-            <a href="{% url 'site_inf:ciencia_computacao' %}" class="btn">Saiba Mais</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Seção Eventos -->
   <section id="eventos" class="events">
@@ -120,6 +120,7 @@
     </div>
   </section>
 
+  
   <!-- Seção Depoimentos -->
   <section id="depoimentos" class="testimonials">
     <div class="container">
@@ -135,30 +136,35 @@
     </div>
   </section>
 
-  <!-- Seção Blog -->
-  <section id="blog" class="blog">
-    <div class="container">
-      <h2>Blog e Notícias</h2>
-      <div class="blog-grid">
+<!-- Seção Blog -->
+<section id="blog" class="blog">
+  <div class="container">
+    <h2>Blog e Notícias</h2>
+    <div class="blog-grid">
+      {% for post in posts|slice:":2" %}
         <article class="blog-item">
-          <img src="{% static 'site_inf/images/blog1.jpg' %}" alt="Notícia 1">
+          {% if post.imagem %}
+            <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}">
+          {% else %}
+            <img src="{% static 'site_inf/images/placeholder.jpg' %}" alt="{{ post.titulo }}">
+          {% endif %}
           <div class="blog-content">
-            <h3>Título da Notícia 1</h3>
-            <p>Resumo da notícia ou artigo que aborda temas de interesse da comunidade.</p>
-            <a href="#" class="btn">Leia Mais</a>
+            <h3>{{ post.titulo }}</h3>
+            <p>{{ post.resumo|default:post.conteudo|truncatewords:20 }}</p>
+            <a href="{% url 'site_inf:post_detail' post.id %}" class="btn">Leia Mais</a>
           </div>
         </article>
-        <article class="blog-item">
-          <img src="{% static 'site_inf/images/blog2.jpg' %}" alt="Notícia 2">
-          <div class="blog-content">
-            <h3>Título da Notícia 2</h3>
-            <p>Resumo da notícia ou artigo que apresenta inovações e descobertas na área.</p>
-            <a href="#" class="btn">Leia Mais</a>
-          </div>
-        </article>
-      </div>
+      {% empty %}
+        <p>Nenhuma notícia cadastrada ainda.</p>
+      {% endfor %}
     </div>
-  </section>
+    <!-- Botão fora da grid -->
+    <div class="view-all">
+      <a href="{% url 'site_inf:blog' %}" class="btn">Ver Todos os Posts</a>
+    </div>
+  </div>
+</section>
+
 
   <!-- Seção projeto -->
   <section id="projetos" class="projects">
