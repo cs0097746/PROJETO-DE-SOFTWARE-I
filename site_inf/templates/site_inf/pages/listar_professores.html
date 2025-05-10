@@ -1,0 +1,35 @@
+<!-- filepath: site_inf/templates/site_inf/pages/listar_professores.html -->
+{% extends "site_inf/base.html" %}
+{% block content %}
+<section class="professores-section">
+  <div class="container">
+    <h2>Professores</h2>
+    <div class="professores-table-outer">
+      <div class="professores-table-wrapper">
+        <table class="professores-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Área de Atuação</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for prof in professores %}
+            <tr>
+              <td>{{ prof.nome }}</td>
+              <td>{{ prof.email }}</td>
+              <td>{{ prof.area_atuacao }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="3">Nenhum professor cadastrado ainda.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -775,3 +775,252 @@ html, body {
 .extensao .btn {
   margin-right: 12px;   /* Espaço entre os botões */
 }
+
+.form-section {
+  padding: 60px 0;
+  background: #f9f9f9;
+  text-align: center;
+}
+.multi-form textarea {
+  width: 100%;
+  max-width: 600px;
+  min-height: 180px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 14px;
+  font-size: 1rem;
+  margin-bottom: 18px;
+  resize: vertical;
+}
+.success-message {
+  margin-top: 18px;
+  color: #fff;
+  background: #4caf50;
+  padding: 12px 0;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.exalunos-section {
+  padding: 60px 0;
+  background: #f9f9f9;
+  text-align: center;
+}
+.exalunos-filter {
+  margin-bottom: 24px;
+}
+.filter-btn {
+  background: #e0e0e0;
+  color: #004080;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 22px;
+  margin: 0 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.filter-btn:hover {
+  background: #004080;
+  color: #fff;
+}
+.exalunos-section {
+  padding: 70px 0 60px 0;
+  background: linear-gradient(120deg, #f4f8fb 60%, #eaf1fa 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.exalunos-title {
+  font-size: 2.3rem;
+  color: #004080;
+  margin-bottom: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.exalunos-filter {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 36px;
+}
+.filter-btn {
+  background: #fff;
+  color: #004080;
+  border: 2px solid #004080;
+  border-radius: 24px;
+  padding: 12px 32px;
+  font-weight: bold;
+  font-size: 1.08rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: background 0.2s, color 0.2s, border 0.2s, transform 0.15s;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: #004080;
+  color: #fff;
+  border-color: #004080;
+  transform: translateY(-2px) scale(1.04);
+}
+
+.exalunos-table-outer {
+  display: flex;
+  justify-content: center;
+}
+.exalunos-table-wrapper {
+  background: rgba(255,255,255,0.98);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+  padding: 36px 24px 24px 24px;
+  min-width: 340px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+.exalunos-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: transparent;
+  border-radius: 18px;
+  overflow: hidden;
+}
+.exalunos-table th, .exalunos-table td {
+  padding: 22px 18px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 1.08rem;
+  transition: background 0.2s;
+}
+.exalunos-table th {
+  background: #f4f8fb;
+  color: #004080;
+  font-size: 1.13rem;
+  font-weight: 700;
+  border-top: none;
+}
+.exalunos-table tr:last-child td {
+  border-bottom: none;
+}
+.exalunos-table tbody tr {
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.exalunos-table tbody tr:hover {
+  background: #eaf1fa;
+  box-shadow: 0 2px 16px rgba(0,64,128,0.07);
+}
+.exaluno-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin: 0 auto;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  border: 3px solid #fff;
+  transition: transform 0.2s;
+}
+.exalunos-table tbody tr:hover .exaluno-avatar {
+  transform: scale(1.08) rotate(-6deg);
+}
+.exaluno-avatar.si {
+  background: linear-gradient(135deg, #004080 60%, #0059b3 100%);
+}
+.exaluno-avatar.cc {
+  background: linear-gradient(135deg, #008080 60%, #00b3b3 100%);
+}
+@media (max-width: 900px) {
+  .container {
+    max-width: 99vw;
+    padding: 0 6px;
+  }
+  .exalunos-table-wrapper {
+    padding: 18px 2px 12px 2px;
+  }
+  .exalunos-table th, .exalunos-table td {
+    padding: 12px 6px;
+    font-size: 0.98rem;
+  }
+  .exaluno-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .exalunos-access-btn {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 20px 0;
+  }
+  .btn-exalunos {
+    background: linear-gradient(90deg, #004080 60%, #008080 100%);
+    color: #fff;
+    padding: 16px 38px;
+    border-radius: 28px;
+    font-size: 1.18rem;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-exalunos:hover {
+    background: linear-gradient(90deg, #008080 60%, #004080 100%);
+    transform: translateY(-2px) scale(1.04);
+  }
+}
+
+.professores-section {
+  padding: 60px 0;
+  background: #f9f9f9;
+  text-align: center;
+}
+.professores-table-outer {
+  display: flex;
+  justify-content: center;
+}
+.professores-table-wrapper {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+  padding: 36px 24px 24px 24px;
+  min-width: 340px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+.professores-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: transparent;
+  border-radius: 18px;
+  overflow: hidden;
+}
+.professores-table th, .professores-table td {
+  padding: 18px 12px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 1.08rem;
+}
+.professores-table th {
+  background: #f4f8fb;
+  color: #004080;
+  font-size: 1.13rem;
+  font-weight: 700;
+}
+.professores-table tr:last-child td {
+  border-bottom: none;
+}

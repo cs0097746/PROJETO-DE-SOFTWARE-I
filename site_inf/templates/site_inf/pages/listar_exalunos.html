@@ -1,0 +1,59 @@
+{% extends "site_inf/base.html" %}
+{% block content %}
+<section class="exalunos-section">
+  <div class="container">
+    <h2 class="exalunos-title">Ex-Alunos dos Cursos de SI e CC</h2>
+    <div class="exalunos-filter">
+      <button class="filter-btn active" onclick="filterExalunos('all', this)">Todos</button>
+      <button class="filter-btn" onclick="filterExalunos('SI', this)">Sistemas de Informação</button>
+      <button class="filter-btn" onclick="filterExalunos('CC', this)">Ciência da Computação</button>
+    </div>
+    <div class="exalunos-table-outer">
+      <div class="exalunos-table-wrapper">
+        <table class="exalunos-table" id="exalunosTable">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Nome</th>
+              <th>Curso</th>
+              <th>Ano de Conclusão</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ex in exalunos %}
+            <tr data-curso="{{ ex.curso }}">
+              <td>
+                <div class="exaluno-avatar {{ ex.curso|lower }}">
+                  {{ ex.nome|slice:":1"|upper }}
+                </div>
+              </td>
+              <td>{{ ex.nome }}</td>
+              <td>{{ ex.get_curso_display }}</td>
+              <td>{{ ex.ano_conclusao }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="4">Nenhum ex-aluno cadastrado ainda.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+function filterExalunos(curso, btn) {
+  const rows = document.querySelectorAll('#exalunosTable tbody tr');
+  rows.forEach(row => {
+    if (curso === 'all' || row.dataset.curso === curso) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+}
+</script>
+{% endblock %}

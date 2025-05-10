@@ -29,3 +29,21 @@ class Projeto(models.Model):
 
     def __str__(self):
         return self.titulo
+    
+class ExAluno(models.Model):
+    CURSOS = (
+        ('SI', 'Sistemas de Informação'),
+        ('CC', 'Ciência da Computação'),
+    )
+    nome = models.CharField(max_length=200)
+    curso = models.CharField(max_length=2, choices=CURSOS)
+    ano_conclusao = models.PositiveIntegerField()
+
+
+class Professor(models.Model):
+    nome = models.CharField(max_length=200)
+    email = models.EmailField(blank=True)
+    area_atuacao = models.CharField(max_length=200, blank=True)
+
+    def __str__(self):
+        return self.nome

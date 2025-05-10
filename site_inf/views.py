@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Evento, PostBlog, Projeto
+from .models import Evento, PostBlog, Projeto, ExAluno, Professor
 
 def index(request):
     posts = PostBlog.objects.all().order_by('-id')
@@ -44,3 +44,28 @@ def extensao_projetos(request):
 
 def extensao_inscricoes(request):
     return render(request, 'site_inf/pages/extensao_inscricoes.html')
+
+def adicionar_exalunos_em_lote(request):
+    mensagem = ""
+    if request.method == "POST":
+        dados = request.POST.get("alunos_lote", "")
+        linhas = [l.strip() for l in dados.splitlines() if l.strip()]
+        adicionados = 0
+        for linha in linhas:
+            partes = [p.strip() for p in linha.split(",")]
+            if len(partes) == 3:
+                nome, curso, ano = partes
+                if curso in ["SI", "CC"]:
+                    ExAluno.objects.create(nome=nome, curso=curso, ano_conclusao=ano)
+                    adicionados += 1
+        mensagem = f"{adicionados} ex-alunos adicionados com sucesso!"
+    return render(request, "site_inf/pages/adicionar_exalunos_lote.html", {"mensagem": mensagem})
+
+def listar_exalunos(request):
+    exalunos = ExAluno.objects.all().order_by('-ano_conclusao', 'nome')
+    return render(request, 'site_inf/pages/listar_exalunos.html', {'exalunos': exalunos})
+
+
+def listar_professores(request):
+    professores = Professor.objects.all().order_by('nome')
+    return render(request, 'site_inf/pages/listar_professores.html', {'professores': professores})
