@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Evento, PostBlog, Projeto, ExAluno, Professor
+from .models import Evento, PostBlog, Projeto, ExAluno, Professor, EmpresaParceira, Vaga
 from import_export.admin import ImportExportModelAdmin
 
 admin.site.register(Evento)
@@ -16,3 +16,14 @@ class ExAlunoAdmin(ImportExportModelAdmin):
 class ProfessorAdmin(ImportExportModelAdmin):
     list_display = ('nome', 'email', 'area_atuacao')
     search_fields = ('nome', 'email', 'area_atuacao')
+
+@admin.register(EmpresaParceira)
+class EmpresaParceiraAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'site', 'destaque')
+    search_fields = ('nome',)
+
+@admin.register(Vaga)
+class VagaAdmin(admin.ModelAdmin):
+    list_display = ('titulo', 'empresa', 'tipo', 'data_publicacao', 'data_expiracao')
+    search_fields = ('titulo', 'empresa__nome')
+    list_filter = ('tipo', 'empresa')

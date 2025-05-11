@@ -1,0 +1,50 @@
+{% extends "site_inf/base.html" %}
+{% block content %}
+<section class="vagas-section">
+  <div class="container">
+    <h2 class="vagas-title">Vagas e Oportunidades</h2>
+    <div class="vagas-list">
+      {% for vaga in vagas %}
+        <div class="vaga-card {% if vaga.data_publicacao|date:'U' > now|date:'U'|add:'-604800' %}nova-vaga{% endif %}">
+          <div class="vaga-empresa">
+            {% if vaga.empresa.logo %}
+              <div class="empresa-logo-circular">
+                <img src="{{ vaga.empresa.logo.url }}" alt="{{ vaga.empresa.nome }}">
+              </div>
+            {% endif %}
+            <div>
+              <h3 class="empresa-nome">{{ vaga.empresa.nome }}</h3>
+              {% if vaga.empresa.site %}
+                <a href="{{ vaga.empresa.site }}" target="_blank" class="empresa-site">Site da Empresa</a>
+              {% endif %}
+            </div>
+          </div>
+          <div class="vaga-info">
+            <span class="vaga-tipo animated-tag">{{ vaga.tipo }}</span>
+            {% if vaga.local %}
+              <span class="vaga-local"><i class="fa fa-map-marker-alt"></i> {{ vaga.local }}</span>
+            {% endif %}
+            <span class="vaga-data">Publicado: {{ vaga.data_publicacao|date:"d/m/Y" }}</span>
+            {% if vaga.data_expiracao %}
+              <span class="vaga-data-expira">Expira: {{ vaga.data_expiracao|date:"d/m/Y" }}</span>
+            {% endif %}
+          </div>
+          <h4 class="vaga-titulo">{{ vaga.titulo }}</h4>
+          <p class="vaga-descricao">{{ vaga.descricao|linebreaksbr|truncatewords:40 }}</p>
+          {% if vaga.link %}
+            <a href="{{ vaga.link }}" class="btn-vaga" target="_blank">
+              <span>Candidatar-se</span>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-left:6px;"><path d="M5 9h8M9 5l4 4-4 4"/></svg>
+            </a>
+          {% endif %}
+          {% if vaga.data_publicacao|date:'U' > now|date:'U'|add:'-604800' %}
+            <span class="badge-nova">Nova</span>
+          {% endif %}
+        </div>
+      {% empty %}
+        <p>Nenhuma vaga disponível no momento.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

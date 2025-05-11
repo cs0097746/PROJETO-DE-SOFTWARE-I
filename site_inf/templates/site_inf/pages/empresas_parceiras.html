@@ -1,0 +1,27 @@
+{% extends "site_inf/base.html" %}
+{% block content %}
+<section class="empresas-section">
+  <div class="container">
+    <h2>Empresas Parceiras da UFSM</h2>
+    <div class="empresas-grid">
+      {% for empresa in empresas %}
+        <div class="empresa-card">
+          {% if empresa.logo %}
+            <img src="{{ empresa.logo.url }}" alt="{{ empresa.nome }}">
+          {% endif %}
+          <h3>{{ empresa.nome }}</h3>
+          <p>{{ empresa.descricao }}</p>
+          {% if empresa.site %}
+            <a href="{{ empresa.site }}" target="_blank" class="btn">Site</a>
+          {% endif %}
+          {% if empresa.contato %}
+            <p class="contato">Contato: {{ empresa.contato }}</p>
+          {% endif %}
+        </div>
+      {% empty %}
+        <p>Nenhuma empresa parceira cadastrada ainda.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

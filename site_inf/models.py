@@ -47,3 +47,28 @@ class Professor(models.Model):
 
     def __str__(self):
         return self.nome
+    
+class EmpresaParceira(models.Model):
+    nome = models.CharField(max_length=200)
+    logo = models.ImageField(upload_to='empresas/', blank=True, null=True)
+    site = models.URLField(blank=True)
+    descricao = models.TextField(blank=True)
+    contato = models.CharField(max_length=200)
+    destaque = models.BooleanField(default=False)  # Para exibir no topo, se quiser
+
+    def __str__(self):
+        return self.nome
+    
+class Vaga(models.Model):
+    titulo = models.CharField(max_length=200)
+    empresa = models.ForeignKey(EmpresaParceira, on_delete=models.CASCADE, related_name='vagas')
+    descricao = models.TextField()
+    local = models.CharField(max_length=100, blank=True)
+    tipo = models.CharField(max_length=50, choices=[('Estágio', 'Estágio'), ('Emprego', 'Emprego'), ('Trainee', 'Trainee'), ('Outro', 'Outro')])
+    link = models.URLField(blank=True)
+    data_publicacao = models.DateField(auto_now_add=True)
+    data_expiracao = models.DateField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.titulo} - {self.empresa.nome}"
+    

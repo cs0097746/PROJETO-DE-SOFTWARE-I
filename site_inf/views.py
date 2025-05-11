@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Evento, PostBlog, Projeto, ExAluno, Professor
+from .models import Evento, PostBlog, Projeto, ExAluno, Professor, EmpresaParceira, Vaga
+from datetime import date
 
 def index(request):
     posts = PostBlog.objects.all().order_by('-id')
@@ -69,3 +70,13 @@ def listar_exalunos(request):
 def listar_professores(request):
     professores = Professor.objects.all().order_by('nome')
     return render(request, 'site_inf/pages/listar_professores.html', {'professores': professores})
+
+def empresas_parceiras(request):
+    empresas = EmpresaParceira.objects.all().order_by('-destaque', 'nome')
+    return render(request, 'site_inf/pages/empresas_parceiras.html', {'empresas': empresas})
+
+def listar_vagas(request):
+    vagas = Vaga.objects.filter(
+        data_expiracao__gte=date.today()
+    ).order_by('-data_publicacao')
+    return render(request, 'site_inf/pages/listar_vagas.html', {'vagas': vagas})

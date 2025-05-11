@@ -1024,3 +1024,223 @@ html, body {
 .professores-table tr:last-child td {
   border-bottom: none;
 }
+
+.empresas-section {
+  padding: 60px 0;
+  background: #f9f9f9;
+  text-align: center;
+}
+.empresas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  margin-top: 32px;
+}
+.empresa-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  padding: 24px 18px;
+  text-align: center;
+  transition: box-shadow 0.3s, transform 0.2s;
+}
+.empresa-card:hover {
+  box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+  transform: translateY(-4px) scale(1.03);
+}
+.empresa-card img {
+  max-width: 120px;
+  max-height: 60px;
+  margin-bottom: 12px;
+  object-fit: contain;
+}
+.empresa-card h3 {
+  color: #004080;
+  margin-bottom: 8px;
+}
+.empresa-card .btn {
+  margin-top: 8px;
+  background: #004080;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.empresa-card .btn:hover {
+  background: #008080;
+}
+.empresa-card .contato {
+  margin-top: 8px;
+  color: #555;
+  font-size: 0.98rem;
+}
+
+
+.vagas-section {
+  padding: 60px 0;
+  background: linear-gradient(120deg, #f4f8fb 60%, #eaf1fa 100%);
+  text-align: center;
+}
+.vagas-title {
+  font-size: 2.2rem;
+  color: #004080;
+  margin-bottom: 36px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.vagas-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+  gap: 36px;
+  margin-top: 32px;
+}
+.vaga-card {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10), 0 1.5px 8px rgba(0,128,128,0.07);
+  padding: 32px 26px 26px 26px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: box-shadow 0.3s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.vaga-card:hover {
+  box-shadow: 0 16px 48px rgba(0,0,0,0.16), 0 2px 12px rgba(0,128,128,0.10);
+  transform: translateY(-6px) scale(1.025);
+}
+.vaga-empresa {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 8px;
+}
+.empresa-logo-circular {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #f4f8fb;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.empresa-logo-circular img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+.empresa-nome {
+  margin: 0;
+  color: #004080;
+  font-size: 1.18rem;
+  font-weight: 700;
+}
+.empresa-site {
+  color: #008080;
+  font-size: 0.98rem;
+  text-decoration: underline;
+}
+.vaga-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 6px;
+  align-items: center;
+}
+.vaga-tipo {
+  background: linear-gradient(90deg, #008080 60%, #004080 100%);
+  color: #fff;
+  border-radius: 14px;
+  padding: 5px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(0,128,128,0.08);
+  animation: pulseTag 1.5s infinite alternate;
+}
+@keyframes pulseTag {
+  0% { box-shadow: 0 0 0 0 rgba(0,128,128,0.13);}
+  100% { box-shadow: 0 0 0 8px rgba(0,128,128,0.03);}
+}
+.vaga-local {
+  background: #e0f7fa;
+  color: #008080;
+  border-radius: 12px;
+  padding: 5px 14px;
+  font-size: 0.99rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.vaga-data, .vaga-data-expira {
+  color: #888;
+  font-size: 0.97rem;
+  margin-right: 8px;
+}
+
+.vaga-titulo {
+  margin: 0 0 6px 0;
+  color: #004080;
+  font-size: 1.22rem;
+  font-weight: 700;
+}
+.vaga-descricao {
+  color: #444;
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+}
+.btn-vaga {
+  align-self: flex-start;
+  background: linear-gradient(90deg, #004080 60%, #008080 100%);
+  color: #fff;
+  padding: 13px 32px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.09rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-vaga:hover {
+  background: linear-gradient(90deg, #008080 60%, #004080 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+.badge-nova {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: #43e97b;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.98rem;
+  padding: 6px 16px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(67,233,123,0.13);
+  letter-spacing: 1px;
+  animation: pulseNova 1.2s infinite alternate;
+}
+@keyframes pulseNova {
+  0% { box-shadow: 0 0 0 0 rgba(67,233,123,0.13);}
+  100% { box-shadow: 0 0 0 8px rgba(67,233,123,0.03);}
+}
+@media (max-width: 700px) {
+  .vagas-list {
+    grid-template-columns: 1fr;
+  }
+  .vaga-card {
+    padding: 18px 6px 16px 6px;
+  }
+  .empresa-logo-circular {
+    width: 38px;
+    height: 38px;
+  }
+}
