@@ -5,14 +5,34 @@
 
 {% block content %}
   <!-- Seção Hero (Banner Principal) -->
-  <section id="home" class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h2>Bem-vindo ao Portal da Computação</h2>
-      <p>Conectando alunos, professores e entusiastas da tecnologia.</p>
-      <a href="#cursos" class="btn">Conheça os Cursos</a>
+<section id="home" class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h2>Bem-vindo ao Portal da Computação da UFSM</h2>
+    <p>Conectando alunos, professores e entusiastas da tecnologia.</p>
+
+    <div class="hero-buttons">
+      <a href="{% url 'site_inf:extensao' %}" class="hero-btn">
+        <i class="fas fa-lightbulb"></i> Extensão
+      </a>
+      <a href="{% url 'site_inf:empresas_parceiras' %}" class="hero-btn">
+        <i class="fas fa-handshake"></i> Parcerias
+      </a>
+      <a href="{% url 'site_inf:listar_vagas' %}" class="hero-btn">
+        <i class="fas fa-briefcase"></i> Vagas
+      </a>
+      <a href="#projetos" class="hero-btn">
+        <i class="fas fa-project-diagram"></i> Projetos
+      </a>
+      <a href="{% url 'site_inf:listar_exalunos' %}" class="hero-btn">
+        <i class="fas fa-user-graduate"></i> Ex-Alunos
+      </a>
+      <a href="{% url 'site_inf:listar_professores' %}" class="hero-btn">
+        <i class="fas fa-chalkboard-teacher"></i> Professores
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
 
   <!-- Seção Cursos -->
@@ -47,6 +67,7 @@
       <meta charset="UTF-8">
       <title>Slider Django</title>
       <link rel="stylesheet" href="{% static 'site_inf/css/slider.css' %}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   </head>
   <body>
   
@@ -88,8 +109,8 @@
           </div>
   
           <div class="buttons">
-              <button id="prev"><</button>
-              <button id="next">></button>
+            <button id="pause"><i class="fas fa-pause"></i></button>
+
           </div>
           <ul class="dots">
               <li class="active"></li>
@@ -200,29 +221,42 @@
   </section>
 
   <!-- Seção Conecte -->
-  <section id="conecte" class="connect">
-    <div class="container">
-      <h2>Conecte-se com a Comunidade</h2>
-      <div class="connect-grid">
-        <div class="connect-item">
-          <h3>Redes Sociais</h3>
-          <p>Siga o Instagram do Programa de Educação Tutorial (PET) dos cursos de Computação.</p>
-          <div class="social-links">
-            <a href="https://www.instagram.com/petsi_ufsm" target="_blank" class="social-btn instagram">Sistemas de Informação</a>
-            <a href="https://www.instagram.com/petcc_ufsm" target="_blank" class="social-btn instagram">Ciência da Computação</a>
-          </div>
-        </div>
-        <div class="connect-item">
-          <h3>Fórum Aberto</h3>
-          <p>Participe de discussões e troque ideias com a comunidade acadêmica.</p>
-          <a href="{% url 'site_inf:forum' %}" class="btn">Acessar Fórum</a>
-        </div>
-        <div class="connect-item">
-          <h3>Contato</h3>
-          <p>Entre em contato conosco para mais informações e suporte.</p>
-          <a href="#" class="btn">Enviar Mensagem</a>
-        </div>
+<section id="contato" class="connect-footer">
+  <div class="connect-container">
+    <div class="connect-left">
+      <h3>Redes Sociais</h3>
+      <div class="social-icons">
+        <a href="https://www.ufsm.br/unidades-universitarias/ct" target="_blank" class="social-icon google" title="Google">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="https://www.instagram.com/petsi_ufsm" target="_blank" class="social-icon instagram" title="Instagram - SI">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.instagram.com/petcc_ufsm" target="_blank" class="social-icon instagram" title="Instagram - CC">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.youtube.com/@ctufsm" target="_blank" class="social-icon youtube" title="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://www.facebook.com/ctufsm" target="_blank" class="social-icon facebook" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=%2B555532209359&context=AfcXedRTywAqKX76goMaB3_DEUgdDRrX-anahFzMMZ2MgaRPHGjdzrWx0iwzrJ6y9jJ55xms9l-VmyJxn7BvTYMynNklqzzgqdi1T9jo7GPi2sc9P2BjnsKFGO8P3iYNvo9Dnx0h8w117E-LplaC5cWkcg&source=FB_Page&app=facebook&entry_point=page_cta" target="_blank" class="social-icon whatsapp" title="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
       </div>
     </div>
-  </section>
+
+    <div class="connect-right">
+      <h3>CAMPUS SEDE</h3>
+      <p>Av. Roraima nº 1000<br>Cidade Universitária<br>Camobi, Santa Maria, Rio Grande do Sul, Brasil<br>CEP: 97105-900</p>
+    </div>
+        <div class="connect-right2">
+      <h3>CENTRO DE TECNOLOGIA</h3>
+      <p>Centro de Tecnologia - UFSM<br>Secretaria da Direção<br>WhatsApp: +55 (55) 3220-8030<br>Telefone: +55 (55) 3220-8881<br>ctufsm@ufsm.br<br></p>
+    </div>
+  </div>
+</section>
+
+
 {% endblock %}
