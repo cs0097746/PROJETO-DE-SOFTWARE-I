@@ -66,7 +66,6 @@ def listar_exalunos(request):
     exalunos = ExAluno.objects.all().order_by('-ano_conclusao', 'nome')
     return render(request, 'site_inf/pages/listar_exalunos.html', {'exalunos': exalunos})
 
-
 def listar_professores(request):
     professores = Professor.objects.all().order_by('nome')
     return render(request, 'site_inf/pages/listar_professores.html', {'professores': professores})

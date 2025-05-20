@@ -10,20 +10,25 @@
   <div class="hero-content">
     <h2>Bem-vindo ao Portal da Computação da UFSM</h2>
     <p>Conectando alunos, professores e entusiastas da tecnologia.</p>
-
+    <div class="hero-buttons-grid">
+      <a href="{% url 'site_inf:extensao' %}" class="hero-box">
+        <i class="fas fa-lightbulb"></i>
+          <span>Extensão</span>
+      </a>
+      <a href="{% url 'site_inf:empresas_parceiras' %}" class="hero-box">
+        <i class="fas fa-handshake"></i>
+          <span>Parcerias</span>
+      </a>
+      <a href="{% url 'site_inf:listar_vagas' %}" class="hero-box">
+        <i class="fas fa-briefcase"></i>
+          <span>Vagas</span>
+      </a>
+      <a href="#projetos" class="hero-box">
+        <i class="fas fa-project-diagram"></i>
+          <span>Projetos</span>
+      </a>
+    </div>
     <div class="hero-buttons">
-      <a href="{% url 'site_inf:extensao' %}" class="hero-btn">
-        <i class="fas fa-lightbulb"></i> Extensão
-      </a>
-      <a href="{% url 'site_inf:empresas_parceiras' %}" class="hero-btn">
-        <i class="fas fa-handshake"></i> Parcerias
-      </a>
-      <a href="{% url 'site_inf:listar_vagas' %}" class="hero-btn">
-        <i class="fas fa-briefcase"></i> Vagas
-      </a>
-      <a href="#projetos" class="hero-btn">
-        <i class="fas fa-project-diagram"></i> Projetos
-      </a>
       <a href="{% url 'site_inf:listar_exalunos' %}" class="hero-btn">
         <i class="fas fa-user-graduate"></i> Ex-Alunos
       </a>

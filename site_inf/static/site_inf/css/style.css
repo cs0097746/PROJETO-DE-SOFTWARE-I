@@ -51,6 +51,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: large;
 }
 
 .logo h1 {
@@ -120,8 +121,6 @@ header {
   transform: translateY(-3px);
 }
 
-
-
 .hero-overlay {
   position: absolute;
   top: 0;
@@ -150,6 +149,41 @@ header {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.hero-box {
+  background: white;
+  color: #333;
+  text-align: center;
+  padding: 20px 10px;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-box i {
+  font-size: 30px;
+  color: #2a6d9e;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.hero-box span {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.hero-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
 }
 
 .btn {
@@ -1364,3 +1398,4 @@ footer {
     height: 38px;
   }
 }
+
