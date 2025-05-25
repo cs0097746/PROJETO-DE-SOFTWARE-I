@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Evento, PostBlog, Projeto, ExAluno, Professor, EmpresaParceira, Vaga
+from .models import Evento, PostBlog, Projeto, ExAluno, Professor, EmpresaParceira, Vaga, TCC
 from datetime import date
 
 def index(request):
@@ -79,3 +79,7 @@ def listar_vagas(request):
         data_expiracao__gte=date.today()
     ).order_by('-data_publicacao')
     return render(request, 'site_inf/pages/listar_vagas.html', {'vagas': vagas})
+
+def tcc_computacao(request):
+    tccs = TCC.objects.all()
+    return render(request, 'site_inf/pages/tcc_computacao.html', {'tccs': tccs})

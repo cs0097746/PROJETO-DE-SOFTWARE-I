@@ -72,4 +72,11 @@ class Vaga(models.Model):
     def __str__(self):
         return f"{self.titulo} - {self.empresa.nome}"
 
+class TCC(models.Model):
+    titulo = models.CharField(max_length=200)
+    descricao = models.TextField()
+    ano = models.IntegerField(null=True, blank=True)
+    link = models.URLField(null=True, blank=True)  # opcional: link para o PDF ou repositório
 
+    def __str__(self):
+        return self.titulo

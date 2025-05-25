@@ -1,10 +1,11 @@
 from django.contrib import admin
-from .models import Evento, PostBlog, Projeto, ExAluno, Professor, EmpresaParceira, Vaga
+from .models import Evento, PostBlog, Projeto, ExAluno, Professor, EmpresaParceira, Vaga, TCC
 from import_export.admin import ImportExportModelAdmin
 
 admin.site.register(Evento)
 admin.site.register(PostBlog)
 admin.site.register(Projeto)
+admin.site.register(TCC)
 
 @admin.register(ExAluno)
 class ExAlunoAdmin(ImportExportModelAdmin):
@@ -27,3 +28,4 @@ class VagaAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'empresa', 'tipo', 'data_publicacao', 'data_expiracao')
     search_fields = ('titulo', 'empresa__nome')
     list_filter = ('tipo', 'empresa')
+    
