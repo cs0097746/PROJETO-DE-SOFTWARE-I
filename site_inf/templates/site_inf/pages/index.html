@@ -86,42 +86,52 @@
   
       <!-- Seção carrossel -->
       <div class="slider">
-          <div class="list">
-              <div class="item">
-                  <img src="{% static 'image1.jpg' %}" alt="1">
-                  <div class="caption">
-                      <h2>Título Notícia/Projeto/Etc</h2>
-                      <p>Descrição da Notícia, do Projeto, etc.</p>
-                      <p class="date">Data: 01/01/2025</p> <!-- Campo de data -->
-                  </div>
-              </div>
-              <div class="item">
-                  <img src="{% static 'image2.jpg' %}" alt="2">
-                  <div class="caption">
-                      <h2>Título da Imagem 2</h2>
-                      <p>Descrição da imagem 2.</p>
-                      <p class="date">Data: 02/01/2025</p> <!-- Campo de data -->
-                  </div>
-              </div>
-              <div class="item">
-                  <img src="{% static 'image3.jpg' %}" alt="3">
-                  <div class="caption">
-                      <h2>Título da Imagem 3</h2>
-                      <p>Descrição da imagem 3.</p>
-                      <p class="date">Data: 03/01/2025</p> <!-- Campo de data -->
-                  </div>
-              </div>
-          </div>
-  
-          <div class="buttons">
-            <button id="pause"><i class="fas fa-pause"></i></button>
+        <div class="list">
 
-          </div>
-          <ul class="dots">
-              <li class="active"></li>
-              <li></li>
-              <li></li>
-          </ul>
+          <a href="https://www.ufsm.br/unidades-universitarias/ct/eventos/next" class="item-link" target="_blank">
+            <div class="item">
+              <img src="{% static 'next.jpg' %}" alt="1">
+              <div class="caption">
+                <h2>Next – Feira de Oportunidades</h2>
+                <p>Prédio 9F - Santa Maria</p>
+                <p class="date">15/04/2025 08:30 - 22/05/2025 19:00</p>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://link2.com" class="item-link">
+            <div class="item">
+              <img src="{% static 'image2.jpg' %}" alt="2">
+              <div class="caption">
+                <h2>Título da Imagem 2</h2>
+                <p>Descrição da imagem 2.</p>
+                <p class="date">Data: 02/01/2025</p>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://link3.com" class="item-link">
+            <div class="item">
+              <img src="{% static 'image3.jpg' %}" alt="3">
+              <div class="caption">
+                <h2>Título da Imagem 3</h2>
+                <p>Descrição da imagem 3.</p>
+                <p class="date">Data: 03/01/2025</p>
+              </div>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="buttons">
+          <button id="pause"><i class="fas fa-pause"></i></button>
+        </div>
+
+        <ul class="dots">
+          <li class="active"></li>
+          <li></li>
+          <li></li>
+        </ul>
       </div>
   
       <script src="{% static 'site_inf/js/slider.js' %}"></script>
