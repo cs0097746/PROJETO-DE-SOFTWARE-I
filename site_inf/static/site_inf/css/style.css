@@ -986,11 +986,7 @@ footer {
   align-items: center;
   justify-content: center;
 }
-.container {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-}
+
 .exalunos-title {
   font-size: 2.3rem;
   color: #004080;
@@ -1399,14 +1395,6 @@ footer {
   }
 }
 
-
-.container {
-  width: 90%; 
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 20px; 
-}
-
 .tcc-header-content {
   display: flex;
   flex-direction: column; 
@@ -1544,4 +1532,29 @@ footer {
     width: 100%; 
     text-align: center;
   }
+}
+
+.logo {
+  /* Este é o container <a> ou <div> do seu logo */
+  position: absolute; /* Tira o logo do fluxo normal e o posiciona em relação ao .header-container */
+  /* Ajuste os valores de top e left para posicionar o logo onde você quer */
+  /* Exemplo 1: Logo centralizado verticalmente no header, mas podendo transbordar */
+  top: 0%;
+  transform: translateY(-50%); /* Centraliza verticalmente o ponto de origem do logo */
+  left: 20px; /* Distância da esquerda */
+
+  top: 100px;
+  left: 50px;
+
+  z-index: 10; /* Garante que o logo fique por cima de outros elementos do header, se necessário */
+}
+
+#logo-principal { /* Sua tag <img> do logo */
+  height: 200px; /* ALTURA DESEJADA PARA O LOGO (maior que a do header) */
+  width: auto;   /* Mantém a proporção */
+  display: block; /* Remove espaços extras que tags <img> inline podem ter */
+}
+
+.header-container nav {
+  margin-left: auto; 
 }
