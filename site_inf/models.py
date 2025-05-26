@@ -75,8 +75,10 @@ class Vaga(models.Model):
 class TCC(models.Model):
     titulo = models.CharField(max_length=200)
     descricao = models.TextField()
+    autor = models.CharField(max_length=255)
     ano = models.IntegerField(null=True, blank=True)
-    link = models.URLField(null=True, blank=True)  # opcional: link para o PDF ou repositório
+    palavras_chave = models.CharField(max_length=255)
+    link = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.titulo

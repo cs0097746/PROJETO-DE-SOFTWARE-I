@@ -1399,74 +1399,149 @@ footer {
   }
 }
 
-.tccs {
-  padding: 60px 20px;
-  background-color: #f9f9f9;
+
+.container {
+  width: 90%; 
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 20px; 
 }
 
-.tccs h2 {
-  font-size: 2.5em;
-  text-align: center;
-  margin-bottom: 10px;
+.tcc-header-content {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  margin-bottom: 40px;  
 }
 
-.tccs p {
-  text-align: center;
-  margin-bottom: 30px;
+/* Estilizando o título H1 */
+.tccs .container h1 { /* Mais específico para evitar conflitos */
+  font-size: 2.8em;  /* Tamanho da fonte maior */
+  color: #2c3e50;    /* Cor do título (exemplo) */
+  margin-bottom: 25px; /* Espaço entre o título e a barra de pesquisa */
+  text-align: center; /* Garante centralização, embora flex já ajude */
 }
 
-.search-bar {
-  margin-bottom: 30px;
-}
-
-.search-bar input {
-  width: 100%;
-  max-width: 500px;
-  padding: 10px 15px;
+#searchInput {
+  width: 70%;
+  max-width: 600px; 
+  padding: 12px 20px;
+  margin-bottom: 20px; 
+  border: 1px solid #bdc3c7; 
+  border-radius: 25px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); 
   font-size: 1em;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  transition: all 0.3s ease-in-out; 
+  outline: none; 
 }
 
-.tcc-grid {
+#searchInput:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1); 
+}
+
+.tcc-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 30px;
-  max-width: 1200px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+  gap: 25px; 
+  width: 100%;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .tcc-card {
   background-color: #fff;
   border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+  padding: 25px; 
+  box-sizing: border-box;
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .tcc-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px); 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
 }
 
-.tcc-title {
-  font-size: 1.3em;
-  margin-bottom: 10px;
-  color: #333;
+.tcc-card h3 {
+  margin-top: 0;
+  margin-bottom: 12px; 
+  font-size: 1.25em; 
+  color: #0056b3; 
+  text-align: left; 
 }
 
 .tcc-card p {
-  margin: 6px 0;
-  font-size: 0.95em;
+  margin: 8px 0; 
+  text-align: justify;
+  font-size: 0.98em; 
+  line-height: 1.6; 
+  color: #555; 
 }
 
-.tcc-link {
-  display: inline-block;
-  margin-top: 12px;
+.tcc-card p strong {
+  color: #333; 
+}
+
+.tcc-button {
+  margin-top: 18px; 
+  background-color: #007bff;
+  color: white;
+  padding: 12px 20px; 
+  border-radius: 8px;
   text-decoration: none;
-  color: #007BFF;
   font-weight: bold;
+  display: inline-block;
+  width: fit-content;
+  align-self: flex-start; 
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.tcc-link i {
-  margin-right: 6px;
+.tcc-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px); 
+}
+
+@media (max-width: 768px) {
+  .tccs .container h1 {
+    font-size: 2.2em; 
+  }
+  #searchInput {
+    width: 85%; 
+  }
+  .tcc-container {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 20px;
+  }
+  .tcc-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tccs .container h1 {
+    font-size: 1.9em; 
+  }
+  #searchInput {
+    width: 95%; 
+    font-size: 0.9em;
+  }
+  .tcc-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .tcc-card h3 {
+    font-size: 1.15em;
+  }
+  .tcc-card p {
+    font-size: 0.92em;
+  }
+  .tcc-button {
+    padding: 10px 15px;
+    width: 100%; 
+    text-align: center;
+  }
 }
