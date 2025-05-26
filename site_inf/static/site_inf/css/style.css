@@ -1399,16 +1399,20 @@ footer {
   }
 }
 
-.tcc-container {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 0 20px;
-  text-align: center;
+.tccs {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
 }
 
-.tcc-title {
-  font-size: 2.2em;
-  margin-bottom: 20px;
+.tccs h2 {
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.tccs p {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .search-bar {
@@ -1424,34 +1428,45 @@ footer {
   border: 1px solid #ccc;
 }
 
-.tcc-list {
+.tcc-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .tcc-card {
   background-color: #fff;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.3s ease;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s;
 }
 
 .tcc-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
 }
 
-.tcc-card h3 {
-  margin-bottom: 10px;
+.tcc-title {
   font-size: 1.3em;
+  margin-bottom: 10px;
   color: #333;
 }
 
 .tcc-card p {
-  color: #555;
+  margin: 6px 0;
   font-size: 0.95em;
 }
 
+.tcc-link {
+  display: inline-block;
+  margin-top: 12px;
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+.tcc-link i {
+  margin-right: 6px;
+}

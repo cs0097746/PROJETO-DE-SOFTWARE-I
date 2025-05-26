@@ -1,41 +1,44 @@
 {% extends "site_inf/base.html" %}
+{% load static %}
+
+{% block title %}TCCs - Computação{% endblock %}
 
 {% block content %}
-<div class="tcc-container">
-  <h1 class="tcc-title">Trabalhos de Conclusão de Curso</h1>
+<section class="tccs">
+  <div class="container">
+    <h2>Trabalhos de Conclusão de Curso</h2>
+    <p>Explore os TCCs desenvolvidos nas áreas de Sistemas de Informação e Ciência da Computação.</p>
 
-  <div class="search-bar">
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Pesquisar por título ou descrição..."
-      onkeyup="filtrarTCCs()"
-    />
-  </div>
+    <input type="text" id="searchInput" placeholder="Pesquisar por título, autor, palavras-chave..." class="search-bar">
 
-  <div class="tcc-list" id="tccList">
-    {% for tcc in tccs %}
-    <div class="tcc-card">
-      <h3>{{ tcc.titulo }}</h3>
-      <p>{{ tcc.descricao }}</p>
+    <div class="tcc-grid" id="tccList">
+      <!-- Exemplo de TCC -->
+      <div class="tcc-card">
+        <h3 class="tcc-title">Sistema Inteligente para Monitoramento Agrícola</h3>
+        <p><strong>Autor:</strong> Palermo, Francisco Moreira</p>
+        <p><strong>Ano:</strong> 2025</p>
+        <p><strong>Palavras-chave:</strong> Web, Nuvem, Acesso Remoto</p>
+        <a href="https://repositorio.ufsm.br/handle/1/34235" target="_blank" class="tcc-link">
+          <i class="fas fa-external-link-alt"></i> Acessar TCC
+        </a>
+      </div>
+
+      <!-- Adicione mais TCCs aqui -->
+      <!-- Copie e cole outros cards mantendo a classe .tcc-card -->
     </div>
-    {% endfor %}
   </div>
-</div>
-{% endblock %}
+</section>
 
-{% block extra_scripts %}
 <script>
-  function filtrarTCCs() {
-    const input = document.getElementById("searchInput").value.toLowerCase();
-    const cards = document.querySelectorAll(".tcc-card");
+  const searchInput = document.getElementById("searchInput");
+  const tccCards = document.querySelectorAll(".tcc-card");
 
-    cards.forEach((card) => {
-      const titulo = card.querySelector("h3").textContent.toLowerCase();
-      const descricao = card.querySelector("p").textContent.toLowerCase();
-      const match = titulo.includes(input) || descricao.includes(input);
-      card.style.display = match ? "block" : "none";
+  searchInput.addEventListener("input", function () {
+    const searchTerm = this.value.toLowerCase();
+    tccCards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(searchTerm) ? "block" : "none";
     });
-  }
+  });
 </script>
 {% endblock %}
