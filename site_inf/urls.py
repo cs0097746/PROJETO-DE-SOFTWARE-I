@@ -1,4 +1,4 @@
-from site_inf.views import index, blog, projetos, eventos, post_detail, projeto_detail, forum, extensao, extensao_inscricoes, extensao_projetos, tcc_computacao
+from site_inf.views import index, blog, projetos, eventos, post_detail, projeto_detail, forum, extensao, extensao_inscricoes, extensao_projetos, tcc_computacao, mapa_ex_alunos
 from site_inf.views import sistemas_info ,ciencia_computacao, adicionar_exalunos_em_lote, listar_exalunos
 from site_inf.views import listar_professores, empresas_parceiras, listar_vagas
 from django.urls import path
@@ -23,7 +23,7 @@ urlpatterns = [
     path('extensao/projetos/', extensao_projetos, name='extensao_projetos'),
     path('extensao/inscricoes/', extensao_inscricoes, name='extensao_inscricoes'),
     path('exalunos/adicionar-lote/', adicionar_exalunos_em_lote, name='adicionar_exalunos_lote'),
-    path('exalunos/', listar_exalunos, name='listar_exalunos'),
+    path('exalunos/', mapa_ex_alunos, name='mapa_ex_alunos'),
     path('professores/', listar_professores, name='listar_professores'),
     path('empresas-parceiras/', empresas_parceiras, name='empresas_parceiras'),
     path('vagas/', listar_vagas, name='listar_vagas'),

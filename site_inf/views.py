@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Evento, PostBlog, Projeto, ExAluno, Professor, EmpresaParceira, Vaga, TCC
 from datetime import date
+from django.utils.html import escapejs
+import json
 
 def index(request):
     posts = PostBlog.objects.all().order_by('-id')
@@ -83,3 +85,19 @@ def listar_vagas(request):
 def tcc_computacao(request):
     tccs = TCC.objects.all()
     return render(request, 'site_inf/pages/tcc_computacao.html', {'tccs': tccs})
+
+def mapa_ex_alunos(request):
+    ex_alunos_com_coords = ExAluno.objects.filter(latitude__isnull=False, longitude__isnull=False).order_by('nome')
+
+    # DEBUG: Imprimir o que está sendo pego pela query
+    print("--- DEBUG NA VIEW: mapa_ex_alunos ---")
+    print(f"QuerySet ex_alunos_com_coords: {ex_alunos_com_coords}")
+    print(f"Contagem de ex_alunos_com_coords: {ex_alunos_com_coords.count()}")
+    for aluno in ex_alunos_com_coords:
+        print(f"Aluno na lista: ID={aluno.id}, Nome={aluno.nome}, Lat={aluno.latitude}, Lng={aluno.longitude}")
+    print("--- FIM DO DEBUG NA VIEW ---")
+
+    context = {
+        'ex_alunos_list': ex_alunos_com_coords,
+    }
+    return render(request, 'site_inf/pages/listar_exalunos.html', context)
