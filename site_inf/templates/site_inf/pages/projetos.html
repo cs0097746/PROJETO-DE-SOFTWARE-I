@@ -12,10 +12,9 @@
               {% if projeto.imagem %}
                 <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}">
               {% endif %}
-              <div class="card-body">
-                <h3>{{ projeto.titulo }}</h3>
-                <p class="tech"><strong>Tecnologias:</strong> {{ projeto.tecnologias }}</p>
-                <p>{{ projeto.descricao|truncatewords:25 }}</p>
+              <div class="card-content">
+                <h3 class="card-title">{{ projeto.titulo }}</h3>
+                <p class="card-description">{{ projeto.descricao|truncatewords:20 }}</p>
                 <a href="{% url 'site_inf:projeto_detail' projeto.id %}" class="btn">Saiba Mais</a>
               </div>
             </div>
