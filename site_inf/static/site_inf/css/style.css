@@ -495,34 +495,37 @@ header {
 .connect-footer {
   background-color: #00133c;
   color: #fff;
-  padding: 40px 60px;
+  padding: 20px 40px;
 }
 
 .connect-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 30px;
+  gap: 5px;
+  max-width: 1200px;
+  margin : 0 auto;
 }
 
-.connect-left{
-  flex: 1 1 300px;
-  padding-left: 300px;
-}
-
-.connect-right {
-  flex: 1 1 300px;
-  padding-left: 150px;
-}
-
+.connect-left,
+.connect-right,
 .connect-right2 {
-  flex: 1 1 300px;
-  padding-left: -50px;
+  flex: 1 1 100px;
+  padding-left: 20px;
 }
 
-.connect-left h3, .connect-right h3 {
-  margin-bottom: 15px;
-  font-size: 20px;
+.connect-left h3,
+.connect-right h3,
+.connect-right2 h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.connect-right p,
+.connect-right2 p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 .social-icons {
@@ -1476,7 +1479,7 @@ footer {
 
 .tcc-button {
   margin-top: 18px; 
-  background-color: #007bff;
+  background-color: #0056b3;
   color: white;
   padding: 12px 20px; 
   border-radius: 8px;

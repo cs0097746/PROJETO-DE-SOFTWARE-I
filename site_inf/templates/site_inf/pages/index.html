@@ -23,7 +23,7 @@
         <i class="fas fa-briefcase"></i>
           <span>Vagas</span>
       </a>
-      <a href="#projetos" class="hero-box">
+      <a href="{% url 'site_inf:projetos' %}" class="hero-box">
         <i class="fas fa-project-diagram"></i>
           <span>Projetos</span>
       </a>
@@ -175,36 +175,6 @@
     </div>
   </section>
 
-<!-- Seção Blog -->
-<section id="blog" class="blog">
-  <div class="container">
-    <h2>Blog e Notícias</h2>
-    <div class="blog-grid">
-      {% for post in posts|slice:":2" %}
-        <article class="blog-item">
-          {% if post.imagem %}
-            <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}">
-          {% else %}
-            <img src="{% static 'site_inf/images/placeholder.jpg' %}" alt="{{ post.titulo }}">
-          {% endif %}
-          <div class="blog-content">
-            <h3>{{ post.titulo }}</h3>
-            <p>{{ post.resumo|default:post.conteudo|truncatewords:20 }}</p>
-            <a href="{% url 'site_inf:post_detail' post.id %}" class="btn">Leia Mais</a>
-          </div>
-        </article>
-      {% empty %}
-        <p>Nenhuma notícia cadastrada ainda.</p>
-      {% endfor %}
-    </div>
-    <!-- Botão fora da grid -->
-    <div class="view-all">
-      <a href="{% url 'site_inf:blog' %}" class="btn">Ver Todos os Posts</a>
-    </div>
-  </div>
-</section>
-
-
   <!-- Seção projeto -->
   <section id="projetos" class="projects">
     <div class="container">
@@ -237,44 +207,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Seção Conecte -->
-<section id="contato" class="connect-footer">
-  <div class="connect-container">
-    <div class="connect-left">
-      <h3>Redes Sociais</h3>
-      <div class="social-icons">
-        <a href="https://www.ufsm.br/unidades-universitarias/ct" target="_blank" class="social-icon google" title="Google">
-          <i class="fab fa-google"></i>
-        </a>
-        <a href="https://www.instagram.com/petsi_ufsm" target="_blank" class="social-icon instagram" title="Instagram - SI">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.instagram.com/petcc_ufsm" target="_blank" class="social-icon instagram" title="Instagram - CC">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.youtube.com/@ctufsm" target="_blank" class="social-icon youtube" title="YouTube">
-          <i class="fab fa-youtube"></i>
-        </a>
-        <a href="https://www.facebook.com/ctufsm" target="_blank" class="social-icon facebook" title="Facebook">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://api.whatsapp.com/send?phone=%2B555532209359&context=AfcXedRTywAqKX76goMaB3_DEUgdDRrX-anahFzMMZ2MgaRPHGjdzrWx0iwzrJ6y9jJ55xms9l-VmyJxn7BvTYMynNklqzzgqdi1T9jo7GPi2sc9P2BjnsKFGO8P3iYNvo9Dnx0h8w117E-LplaC5cWkcg&source=FB_Page&app=facebook&entry_point=page_cta" target="_blank" class="social-icon whatsapp" title="WhatsApp">
-          <i class="fab fa-whatsapp"></i>
-        </a>
-      </div>
-    </div>
-
-    <div class="connect-right">
-      <h3>CAMPUS SEDE</h3>
-      <p>Av. Roraima nº 1000<br>Cidade Universitária<br>Camobi, Santa Maria, Rio Grande do Sul, Brasil<br>CEP: 97105-900</p>
-    </div>
-        <div class="connect-right2">
-      <h3>CENTRO DE TECNOLOGIA</h3>
-      <p>Centro de Tecnologia - UFSM<br>Secretaria da Direção<br>WhatsApp: +55 (55) 3220-8030<br>Telefone: +55 (55) 3220-8881<br>ctufsm@ufsm.br<br></p>
-    </div>
-  </div>
-</section>
 
 
 {% endblock %}
