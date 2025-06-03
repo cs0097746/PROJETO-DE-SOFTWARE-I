@@ -20,12 +20,31 @@ class PostBlog(models.Model):
         return self.titulo
 
 class Projeto(models.Model):
+    # Definindo as opções para o campo categoria
+    CATEGORIA_ENSINO = 'ENSINO'
+    CATEGORIA_EXTENSAO = 'EXTENSAO'
+    CATEGORIA_PESQUISA = 'PESQUISA'
+    
+    CATEGORIA_CHOICES = [
+        (CATEGORIA_ENSINO, 'Ensino'),
+        (CATEGORIA_EXTENSAO, 'Extensão'),
+        (CATEGORIA_PESQUISA, 'Pesquisa'),
+    ]
+
     titulo = models.CharField(max_length=100)
     descricao = models.TextField()
     tecnologias = models.CharField(max_length=255)
     link = models.URLField(blank=True)
     imagem = models.ImageField(upload_to='projetos/', blank=True, null=True)
     criado_em = models.DateTimeField(auto_now_add=True)
+    
+    # Novo campo para categoria
+    categoria = models.CharField(
+        max_length=20,
+        choices=CATEGORIA_CHOICES,
+        default=CATEGORIA_PESQUISA, # Você pode definir um padrão ou remover o default
+        verbose_name="Categoria do Projeto"
+    )
 
     def __str__(self):
         return self.titulo
@@ -87,6 +106,27 @@ class TCC(models.Model):
     ano = models.IntegerField(null=True, blank=True)
     palavras_chave = models.CharField(max_length=255)
     link = models.URLField(null=True, blank=True)
+    # Novo campo para upload do arquivo do TCC
+    arquivo_tcc = models.FileField(upload_to='tccs/', null=True, blank=True) # O argumento upload_to define o subdiretório dentro do seu MEDIA_ROOT
 
     def __str__(self):
         return self.titulo
+    
+class Publicacao(models.Model):
+    titulo = models.CharField(max_length=500, verbose_name="Título da Publicação")
+    autores = models.TextField(help_text="Liste os autores. Ex: Silva, J.; Souza, A.; Pereira, L.")
+    evento_ou_revista = models.CharField(max_length=500, verbose_name="Nome do Evento, Revista ou Livro")
+    ano = models.IntegerField(verbose_name="Ano de Publicação")
+    
+    link_pdf = models.URLField(blank=True, null=True, verbose_name="Link para o PDF")
+    link_bibtex = models.URLField(blank=True, null=True, verbose_name="Link para o BibTeX")
+    link_doi = models.URLField(blank=True, null=True, verbose_name="Link para DOI (Digital Object Identifier)")
+    link_outro = models.URLField(blank=True, null=True, verbose_name="Outro Link (Ex: App, Código, Apresentação)")
+
+    class Meta:
+        verbose_name = "Publicação"
+        verbose_name_plural = "Publicações"
+        ordering = ['-ano', 'titulo'] # Ordena por ano (mais recente primeiro), depois por título
+
+    def __str__(self):
+        return f"{self.titulo} ({self.ano})"

@@ -5,25 +5,41 @@
 <section class="projects">
   <div class="container">
     <h2>Projetos Acadêmicos</h2>
+
+    {# Nova Seção da Legenda #}
+    <div class="project-legend">
+      <h4>Legenda de Cores por Categoria:</h4>
+      <span class="legend-item">
+        <span class="legend-color-box legend-color-box--ensino"></span> Ensino
+      </span>
+      <span class="legend-item">
+        <span class="legend-color-box legend-color-box--extensao"></span> Extensão
+      </span>
+      <span class="legend-item">
+        <span class="legend-color-box legend-color-box--pesquisa"></span> Pesquisa
+      </span>
+    </div>
+
     <div class="project-grid">
-        {% for projeto in projetos %}
-          <div class="project-item">
-            <div class="card">
-              {% if projeto.imagem %}
-                <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}">
-              {% endif %}
-              <div class="card-body">
-                <h3>{{ projeto.titulo }}</h3>
-                <p class="tech"><strong>Tecnologias:</strong> {{ projeto.tecnologias }}</p>
-                <p>{{ projeto.descricao|truncatewords:25 }}</p>
-                <a href="{% url 'site_inf:projeto_detail' projeto.id %}" class="btn">Saiba Mais</a>
-              </div>
+      {% for projeto in projetos %}
+        {# A classe project-item--{{ projeto.categoria|lower }} será usada para a borda colorida no card #}
+        <div class="project-item project-item--{{ projeto.categoria|lower }}"> 
+          <div class="card">
+            {% if projeto.imagem %}
+              <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}">
+            {% endif %}
+            <div class="card-body">
+              <h3>{{ projeto.titulo }}</h3>
+              <p class="tech"><strong>Tecnologias:</strong> {{ projeto.tecnologias }}</p>
+              <p>{{ projeto.descricao|truncatewords:25 }}</p>
+              <a href="{% url 'site_inf:projeto_detail' projeto.id %}" class="btn">Saiba Mais</a>
             </div>
           </div>
-        {% empty %}
-          <p>Nenhum projeto encontrado.</p>
-        {% endfor %}
-      </div>
+        </div>
+      {% empty %}
+        <p>Nenhum projeto encontrado.</p>
+      {% endfor %}
+    </div>
   </div>
 </section>
 {% endblock %}

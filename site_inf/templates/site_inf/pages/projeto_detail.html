@@ -3,12 +3,18 @@
 
 {% block content %}
 <section class="project-detail-section">
-  <div class="project-detail-container">
+  {# Adiciona uma classe ao container principal baseada na categoria, se quiser estilizar a página inteira #}
+  <div class="project-detail-container project-detail--{{ projeto.categoria|lower }}">
     {% if projeto.imagem %}
       <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}" class="detail-img">
     {% endif %}
     <div class="detail-content">
       <h2 class="detail-title">{{ projeto.titulo }}</h2>
+      {# Mostra a categoria como um "badge" #}
+      <p class="project-category">
+        <strong>Tipo:</strong> 
+        <span class="badge badge--{{ projeto.categoria|lower }}">{{ projeto.get_categoria_display }}</span>
+      </p>
       <p class="tech"><strong>Tecnologias usadas:</strong> {{ projeto.tecnologias }}</p>
       <p class="detail-description">{{ projeto.descricao }}</p>
       <div class="detail-buttons">

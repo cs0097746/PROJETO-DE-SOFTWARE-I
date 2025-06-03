@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Evento, PostBlog, Projeto, ExAluno, Professor, EmpresaParceira, Vaga, TCC
+from .models import Evento, PostBlog, Projeto, ExAluno, Professor, EmpresaParceira, Vaga, TCC, Publicacao
 from datetime import date
 from django.utils.html import escapejs
 import json
@@ -101,3 +101,16 @@ def mapa_ex_alunos(request):
         'ex_alunos_list': ex_alunos_com_coords,
     }
     return render(request, 'site_inf/pages/listar_exalunos.html', context)
+
+def pagina_publicacoes(request):
+    publicacoes = Publicacao.objects.all() # A ordenação do Meta do modelo será usada
+    
+    # Para criar os títulos de ano como "2024", "2023", etc.
+    # Pega todos os anos únicos das publicações, em ordem decrescente
+    anos_unicos = sorted(list(set(p.ano for p in publicacoes)), reverse=True)
+    
+    context = {
+        'publicacoes': publicacoes,
+        'anos_unicos': anos_unicos, # Para iterar e criar seções por ano
+    }
+    return render(request, 'site_inf/pages/publicacoes.html', context)

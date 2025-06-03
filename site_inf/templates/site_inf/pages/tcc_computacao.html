@@ -19,7 +19,17 @@
           <p><strong>Autor:</strong> {{ tcc.autor }}</p>
           <p><strong>Ano:</strong> {{ tcc.ano }}</p>
           <p><strong>Palavras-chave:</strong> {{ tcc.palavras_chave }}</p>
-          <a href="{{ tcc.link }}" target="_blank" class="tcc-button">Acessar TCC</a>
+          
+          {% if tcc.link %}
+            <a href="{{ tcc.link }}" target="_blank" class="tcc-button">Acessar Link Externo</a>
+          {% endif %}
+
+          {% if tcc.arquivo_tcc %}
+            {# Este link tenta abrir em nova aba, o navegador decide se mostra ou baixa #}
+            <a href="{{ tcc.arquivo_tcc.url }}" target="_blank" class="tcc-button download-button">
+              Baixar/Ver Arquivo do TCC
+            </a>
+          {% endif %}
         </div>
       {% endfor %}
     </div>
@@ -28,14 +38,13 @@
 
 <script>
   const searchInput = document.getElementById("searchInput");
-  const tccCards = document.querySelectorAll(".tcc-card"); // Corrigido: seleciona os cards individuais
+  const tccCards = document.querySelectorAll(".tcc-card"); 
 
   searchInput.addEventListener("input", function () {
     const searchTerm = this.value.toLowerCase();
     tccCards.forEach(card => {
-      const textContent = card.innerText || card.textContent; // Garante compatibilidade
+      const textContent = card.innerText || card.textContent; 
       const text = textContent.toLowerCase();
-      // Usa 'flex' pois .tcc-card é display: flex. Se fosse block, usaria 'block'.
       card.style.display = text.includes(searchTerm) ? "flex" : "none";
     });
   });

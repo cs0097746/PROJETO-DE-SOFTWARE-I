@@ -1,5 +1,5 @@
 from site_inf.views import index, blog, projetos, eventos, post_detail, projeto_detail, forum, extensao, extensao_inscricoes, extensao_projetos, tcc_computacao, mapa_ex_alunos
-from site_inf.views import sistemas_info ,ciencia_computacao, adicionar_exalunos_em_lote, listar_exalunos
+from site_inf.views import sistemas_info ,ciencia_computacao, adicionar_exalunos_em_lote, pagina_publicacoes
 from site_inf.views import listar_professores, empresas_parceiras, listar_vagas
 from django.urls import path
 
@@ -28,4 +28,5 @@ urlpatterns = [
     path('empresas-parceiras/', empresas_parceiras, name='empresas_parceiras'),
     path('vagas/', listar_vagas, name='listar_vagas'),
     path('tccs-computacao/', tcc_computacao, name='tcc_computacao'),
+    path('publicacoes/', pagina_publicacoes, name='publicacoes'),
 ]

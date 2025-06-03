@@ -769,6 +769,124 @@ footer {
   background: #003066;
 }
 
+/* Estilos para os badges de categoria */
+.badge {
+  padding: 0.3em 0.6em;
+  font-size: 0.8em;
+  font-weight: bold;
+  border-radius: 4px;
+  color: #fff; /* Cor do texto do badge - pode precisar ajustar por cor de fundo */
+  text-transform: uppercase;
+  margin-left: 5px;
+}
+
+.badge--ensino {
+  background-color: #3498db; /* Azul para Ensino */
+}
+
+.badge--extensao {
+  background-color: #2ecc71; /* Verde para Extensão */
+}
+
+.badge--pesquisa {
+  background-color: #f1c40f; /* Amarelo para Pesquisa */
+  color: #333; /* Texto escuro para fundo amarelo pode ser melhor */
+}
+
+/* --- Legenda de Cores --- */
+.project-legend {
+  margin-bottom: 25px; /* Aumentei a margem para separar mais */
+  padding: 15px;
+  background-color: #f0f0f0; /* Cor de fundo suave para a legenda */
+  border-radius: 8px;
+  text-align: center; /* Centralizar itens da legenda, opcional */
+}
+
+.project-legend h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.legend-item {
+  display: inline-block; /* Para permitir centralização se text-align: center no pai */
+  margin: 5px 10px; /* Espaçamento entre itens da legenda */
+  font-size: 0.95em;
+  vertical-align: middle;
+}
+
+.legend-color-box {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px; /* Para um quadrado com cantos arredondados */
+  /* ou border-radius: 50%; para um círculo */
+  vertical-align: middle;
+  margin-right: 6px;
+  border: 1px solid rgba(0,0,0,0.1); /* Borda sutil na caixa de cor */
+}
+
+/* Cores para as caixas da legenda (e serão usadas para as bordas dos cards) */
+.legend-color-box--ensino,
+.project-item--ensino .card { /* Aplica a borda ao card dentro do project-item da categoria */
+  border-left: 7px solid #3498db; /* Azul para Ensino - borda mais grossa */
+}
+.legend-color-box--ensino {
+  background-color: #3498db; /* Cor de fundo para a caixa da legenda */
+}
+
+
+.legend-color-box--extensao,
+.project-item--extensao .card {
+  border-left: 7px solid #2ecc71; /* Verde para Extensão */
+}
+.legend-color-box--extensao {
+  background-color: #2ecc71;
+}
+
+
+.legend-color-box--pesquisa,
+.project-item--pesquisa .card {
+  border-left: 7px solid #f1c40f; /* Amarelo para Pesquisa */
+}
+.legend-color-box--pesquisa {
+  background-color: #f1c40f;
+}
+
+
+/* --- Estilo do Card do Projeto --- */
+.project-item .card {
+  background-color: #fff; /* Fundo branco para os cards */
+  border-radius: 8px;     /* Cantos arredondados para o card */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil */
+  transition: box-shadow 0.3s ease;
+  /* Importante: a borda colorida será aplicada pelas classes específicas acima */
+  /* Remova qualquer outra borda esquerda padrão se houver */
+  /* border-left: none; */ /* Garante que apenas a borda colorida apareça */
+  margin-bottom: 15px; /* Espaçamento entre os cards na grade */
+}
+
+.project-item .card:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.project-category-text {
+    font-size: 0.9em;
+    color: #555; /* Cor para o texto "Tipo:" */
+    margin-bottom: 10px;
+}
+
+.project-category-text strong {
+    color: #333;
+}
+
+/* Certifique-se que o seu .project-grid lide bem com os cards */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Exemplo de layout responsivo */
+  gap: 20px;
+}
+
 /* Projeto Detail Moderno e Centralizado */
 .project-detail-section {
   padding: 60px 0;
