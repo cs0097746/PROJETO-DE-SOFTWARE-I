@@ -2,7 +2,7 @@
 {% block content %}
 <section class="vagas-section">
   <div class="container">
-    <h2 class="vagas-title">Vagas e Oportunidades</h2>
+    <div class="page-main-title"><h1>Vagas e Oportunidades</h1></div>
     <div class="vagas-list">
       {% for vaga in vagas %}
         <div class="vaga-card {% if vaga.data_publicacao|date:'U' > now|date:'U'|add:'-604800' %}nova-vaga{% endif %}">

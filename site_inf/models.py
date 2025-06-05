@@ -42,7 +42,7 @@ class Projeto(models.Model):
     categoria = models.CharField(
         max_length=20,
         choices=CATEGORIA_CHOICES,
-        default=CATEGORIA_PESQUISA, # Você pode definir um padrão ou remover o default
+        default=CATEGORIA_PESQUISA,
         verbose_name="Categoria do Projeto"
     )
 

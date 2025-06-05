@@ -6,7 +6,8 @@
 {% block content %}
 <section class="publicacoes-page">
   <div class="container">
-    <h2 class="page-title">Publicações</h2>
+    <div class="page-main-title"><h2>Publicações</h2></div>
+    <input type="text" id="searchInputPublicacao" placeholder="Pesquisar por publicação...">
 
     {% if not publicacoes %}
       <p class="text-center">Nenhuma publicação encontrada no momento.</p>
@@ -44,64 +45,18 @@
   </div>
 </section>
 
-{# Sugestão de CSS básico - coloque em seu arquivo .css principal #}
-<style>
-  .publicacoes-page .page-title {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 2.5em;
-    color: #333;
-  }
-  .year-group {
-    margin-bottom: 40px;
-  }
-  .year-heading {
-    font-size: 2em;
-    color: #007bff; /* AZUL - Alterado de vermelho para azul */
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 10px;
-    margin-bottom: 25px;
-  }
-  
-  .publication-entry {
-    background-color: #fdfdfd;
-    border: 1px solid #eaeaea;
-    border-left: 6px solid #007bff; /* AZUL - Alterado de vermelho para azul */
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 0 8px 8px 0;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
-  }
-  .publication-entry p {
-    margin-bottom: 0.75em;
-    line-height: 1.6;
-  }
-  .publication-authors {
-    font-size: 0.95em;
-    color: #444;
-  }
-  .publication-title {
-    font-size: 1.2em;
-    font-weight: 600;
-    color: #111;
-    margin-top: 0.25em;
-    margin-bottom: 0.5em;
-  }
-  .publication-venue {
-    font-size: 0.9em;
-    color: #555;
-    font-style: italic;
-  }
-  .publication-links .pub-link {
-    margin-right: 12px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #0056b3; /* Azul para links */
-    font-size: 0.9em;
-  }
-  .publication-links .pub-link:hover {
-    text-decoration: underline;
-    color: #003d80;
-  }
-</style>
+<script>
+  const searchInput = document.getElementById("searchInputPublicacao");
+  const publicacaoQ = document.querySelectorAll(".publication-entry"); 
+
+  searchInput.addEventListener("input", function () {
+    const searchTerm = this.value.toLowerCase();
+    publicacaoQ.forEach(card => {
+      const textContent = card.innerText || card.textContent; 
+      const text = textContent.toLowerCase();
+      card.style.display = text.includes(searchTerm) ? "" : "none";
+    });
+  });
+</script>
+
 {% endblock %}

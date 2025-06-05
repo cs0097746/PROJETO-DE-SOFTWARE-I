@@ -3,152 +3,99 @@
 {% block title %}Ex Alunos{% endblock %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa de Ex-Alunos</title>
+<title>Mapa de Ex-Alunos</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin=""/>
-    <style>
-        /* Seu CSS existente ... */
-        body { font-family: sans-serif; margin: 0; padding: 0; }
-        .map-container-wrapper {
-            display: flex;
-            height: 90vh;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        #map {
-            height: 100%;
-            width: 70%;
-            border: 1px solid #ccc;
-        }
-        #alumni-list-container {
-            width: 30%;
-            height: 100%;
-            overflow-y: auto;
-            padding-left: 15px;
-            box-sizing: border-box;
-        }
-        #alumni-list-container h2 {
-            margin-top: 0;
-        }
-        .alumnus-item {
-            padding: 8px;
-            cursor: pointer;
-            border-bottom: 1px solid #eee;
-            transition: background-color 0.2s;
-        }
-        .alumnus-item:hover {
-            background-color: #f0f0f0;
-        }
-        .alumnus-item.selected {
-            background-color: #d0e0f0;
-            font-weight: bold;
-        }
-        .alumni-details {
-            font-size: 0.9em;
-            color: #555;
-        }
-    </style>
-</head>
-<body>
-    <div class="map-container-wrapper">
-        <div id="map"></div>
-        <div id="alumni-list-container">
-            <h2>Ex-Alunos</h2>
-            <ul id="alumni-list">
-                {% for aluno in ex_alunos_list %}
-                    <li class="alumnus-item"
-                        data-id="{{ aluno.id }}"
-                        data-lat="{{ aluno.latitude }}"
-                        data-lng="{{ aluno.longitude }}"
-                        data-nome="{{ aluno.nome }}"
-                        data-empresa="{{ aluno.empresa_atual|default:'' }}"
-                        data-cidade="{{ aluno.cidade_atual|default:'' }}"
-                        data-linkedin="{{ aluno.linkedin_url|default:'' }}">
-                        <strong>{{ aluno.nome }}</strong>
-                        {% if aluno.empresa_atual or aluno.cidade_atual %}
-                            <div class="alumni-details">
-                                {% if aluno.empresa_atual %}{{ aluno.empresa_atual }}{% endif %}
-                                {% if aluno.empresa_atual and aluno.cidade_atual %} - {% endif %}
-                                {% if aluno.cidade_atual %}{{ aluno.cidade_atual }}{% endif %}
-                            </div>
-                        {% endif %}
-                    </li>
-                {% empty %}
-                    <li>Nenhum ex-aluno com localização cadastrada.</li>
-                {% endfor %}
-            </ul>
-        </div>
+<div class="map-container-wrapper">
+    <div id="map"></div>
+    <div id="alumni-list-container">
+        <h2>Ex-Alunos</h2>
+        <ul id="alumni-list">
+            {% for aluno in ex_alunos_list %}
+                <li class="alumnus-item"
+                    data-id="{{ aluno.id }}"
+                    data-lat="{{ aluno.latitude }}"
+                    data-lng="{{ aluno.longitude }}"
+                    data-nome="{{ aluno.nome }}"
+                    data-empresa="{{ aluno.empresa_atual|default:'' }}"
+                    data-cidade="{{ aluno.cidade_atual|default:'' }}">
+                    <strong>{{ aluno.nome }}</strong>
+                    {% if aluno.empresa_atual or aluno.cidade_atual %}
+                        <div class="alumni-details">
+                            {% if aluno.empresa_atual %}{{ aluno.empresa_atual }}{% endif %}
+                            {% if aluno.empresa_atual and aluno.cidade_atual %} - {% endif %}
+                            {% if aluno.cidade_atual %}{{ aluno.cidade_atual }}{% endif %}
+                        </div>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li>Nenhum ex-aluno com localização cadastrada.</li>
+            {% endfor %}
+        </ul>
     </div>
+</div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
 
-    <script>
-        // Não precisamos mais do JSON.parse aqui
+<script>
+    const map = L.map('map').setView([-29.7169, -53.7149], 5);
 
-        const map = L.map('map').setView([-29.7169, -53.7149], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+    setTimeout(function() {
+    map.invalidateSize();
+    }, 0);
 
-        const markers = {};
-        const alumniListItems = document.querySelectorAll('.alumnus-item');
-        alumniListItems.forEach(item => {
-            const lat = parseFloat(item.dataset.lat);
-            const lng = parseFloat(item.dataset.lng);
-            const alunoId = item.dataset.id;
-            const nome = item.dataset.nome;
-            const empresa = item.dataset.empresa;
-            const cidade = item.dataset.cidade;
-            const linkedin = item.dataset.linkedin;
+    const markers = {};
+    const alumniListItems = document.querySelectorAll('.alumnus-item');
+    alumniListItems.forEach(item => {
+        const lat = parseFloat(item.dataset.lat);
+        const lng = parseFloat(item.dataset.lng);
+        const alunoId = item.dataset.id;
+        const nome = item.dataset.nome;
+        const empresa = item.dataset.empresa;
+        const cidade = item.dataset.cidade;
+        const linkedin = item.dataset.linkedin;
+
+        if (!isNaN(lat) && !isNaN(lng)) {
+            const marker = L.marker([lat, lng]).addTo(map);
+            let popupContent = `<strong>${nome}</strong>`;
+            if (empresa) {
+                popupContent += `<br>${empresa}`;
+            }
+            if (cidade) {
+                popupContent += `<br>${cidade}`;
+            }
+            if (linkedin) {
+                popupContent += `<br><a href="${linkedin}" target="_blank" rel="noopener noreferrer">LinkedIn</a>`;
+            }
+            marker.bindPopup(popupContent);
+            markers[alunoId] = marker;
+        }
+    });
+
+    // Lógica para clicar no nome do aluno na lista (permanece a mesma)
+    alumniListItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const lat = parseFloat(this.dataset.lat);
+            const lng = parseFloat(this.dataset.lng);
+            const alunoId = this.dataset.id;
+
+            alumniListItems.forEach(i => i.classList.remove('selected'));
+            this.classList.add('selected');
 
             if (!isNaN(lat) && !isNaN(lng)) {
-                const marker = L.marker([lat, lng]).addTo(map);
-                let popupContent = `<strong>${nome}</strong>`;
-                if (empresa) {
-                    popupContent += `<br>${empresa}`;
+                map.flyTo([lat, lng], 13);
+                if (markers[alunoId]) {
+                    markers[alunoId].openPopup();
                 }
-                if (cidade) {
-                    popupContent += `<br>${cidade}`;
-                }
-                if (linkedin) {
-                    popupContent += `<br><a href="${linkedin}" target="_blank" rel="noopener noreferrer">LinkedIn</a>`;
-                }
-                marker.bindPopup(popupContent);
-                markers[alunoId] = marker;
+            } else {
+                console.warn("Coordenadas inválidas para o aluno: ", this.textContent);
             }
         });
-
-        // Lógica para clicar no nome do aluno na lista (permanece a mesma)
-        alumniListItems.forEach(item => {
-            item.addEventListener('click', function() {
-                const lat = parseFloat(this.dataset.lat);
-                const lng = parseFloat(this.dataset.lng);
-                const alunoId = this.dataset.id;
-
-                alumniListItems.forEach(i => i.classList.remove('selected'));
-                this.classList.add('selected');
-
-                if (!isNaN(lat) && !isNaN(lng)) {
-                    map.flyTo([lat, lng], 13);
-                    if (markers[alunoId]) {
-                        markers[alunoId].openPopup();
-                    }
-                } else {
-                    console.warn("Coordenadas inválidas para o aluno: ", this.textContent);
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+    });
+</script>
 {% endblock %}
