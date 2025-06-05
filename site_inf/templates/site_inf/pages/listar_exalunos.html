@@ -16,16 +16,8 @@
                     data-lat="{{ aluno.latitude }}"
                     data-lng="{{ aluno.longitude }}"
                     data-nome="{{ aluno.nome }}"
-                    data-empresa="{{ aluno.empresa_atual|default:'' }}"
-                    data-cidade="{{ aluno.cidade_atual|default:'' }}">
+                    data-empresa="{{ aluno.empresa_atual|default:'' }}">
                     <strong>{{ aluno.nome }}</strong>
-                    {% if aluno.empresa_atual or aluno.cidade_atual %}
-                        <div class="alumni-details">
-                            {% if aluno.empresa_atual %}{{ aluno.empresa_atual }}{% endif %}
-                            {% if aluno.empresa_atual and aluno.cidade_atual %} - {% endif %}
-                            {% if aluno.cidade_atual %}{{ aluno.cidade_atual }}{% endif %}
-                        </div>
-                    {% endif %}
                 </li>
             {% empty %}
                 <li>Nenhum ex-aluno com localização cadastrada.</li>

@@ -59,8 +59,6 @@ class ExAluno(models.Model):
     curso = models.CharField(max_length=2, choices=CURSOS)
     ano_conclusao = models.PositiveIntegerField()
     empresa_atual = models.CharField(max_length=200, blank=True, null=True)
-    cidade_atual = models.CharField(max_length=100, blank=True, null=True)
-    pais_atual = models.CharField(max_length=100, blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
 
