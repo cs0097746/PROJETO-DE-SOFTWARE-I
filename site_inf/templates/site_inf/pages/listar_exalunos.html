@@ -1,23 +1,25 @@
 {% extends "site_inf/base.html" %}
 {% load static %}
+{% load l10n %}
 {% block title %}Ex Alunos{% endblock %}
 
 {% block content %}
-<title>Mapa de Ex-Alunos</title>
 
 <div class="map-container-wrapper">
     <div id="map"></div>
     <div id="alumni-list-container">
-        <h2>Ex-Alunos</h2>
+        <div class = "page-main-title"><h2>Ex-Alunos</h2></div>
         <ul id="alumni-list">
             {% for aluno in ex_alunos_list %}
                 <li class="alumnus-item"
                     data-id="{{ aluno.id }}"
-                    data-lat="{{ aluno.latitude }}"
-                    data-lng="{{ aluno.longitude }}"
+                    data-lat="{{ aluno.latitude|unlocalize }}"
+                    data-lng="{{ aluno.longitude|unlocalize }}"
                     data-nome="{{ aluno.nome }}"
                     data-empresa="{{ aluno.empresa_atual|default:'' }}">
                     <strong>{{ aluno.nome }}</strong>
+                    <div class="alumni-details">{{ aluno.empresa_atual|default:'Empresa não informada' }}</div>
+
                 </li>
             {% empty %}
                 <li>Nenhum ex-aluno com localização cadastrada.</li>
@@ -62,14 +64,13 @@
                 popupContent += `<br>${cidade}`;
             }
             if (linkedin) {
-                popupContent += `<br><a href="${linkedin}" target="_blank" rel="noopener noreferrer">LinkedIn</a>`;
+                popupContent += `<br><a href="${linkedin}" target="_blank">LinkedIn</a>`;
             }
             marker.bindPopup(popupContent);
             markers[alunoId] = marker;
         }
     });
 
-    // Lógica para clicar no nome do aluno na lista (permanece a mesma)
     alumniListItems.forEach(item => {
         item.addEventListener('click', function() {
             const lat = parseFloat(this.dataset.lat);

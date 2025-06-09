@@ -1880,43 +1880,94 @@ footer {
 }
 
 /*EX ALUNOS*/
-body { font-family: sans-serif; margin: 0; padding: 0; }
 .map-container-wrapper {
     display: flex;
     height: 90vh;
-    padding: 10px;
+    padding: 20px;
     box-sizing: border-box;
 }
+
+/* Estilo do Mapa */
 #map {
     height: 100%;
-    width: 70%;
+    width: 80%;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    border-radius: 8px;
 }
+
+/* Container da Lista de Alunos */
 #alumni-list-container {
-    width: 30%;
+    width: 20%;
     height: 100%;
     overflow-y: auto;
-    padding-left: 15px;
+    padding: 0 20px;
     box-sizing: border-box;
 }
+
 #alumni-list-container h2 {
     margin-top: 0;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
 }
+
+/* NOVO: Remove as bolinhas da lista e o padding padrão */
+#alumni-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilos dos Itens da Lista de Alunos */
 .alumnus-item {
-    padding: 8px;
+    padding: 12px 15px;
     cursor: pointer;
-    border-bottom: 1px solid #eee;
-    transition: background-color 0.2s;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
+
+.alumnus-item strong {
+    color: #004080;
+    font-size: 1.1em;
+}
+
 .alumnus-item:hover {
-    background-color: #f0f0f0;
+    background-color: #f5f8fa;
+    border-color: #a3c5e8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .alumnus-item.selected {
-    background-color: #d0e0f0;
+    background-color: #eaf2fa;
+    border-color: #0056b3;
     font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 86, 179, 0.2);
 }
+
+/* Estilo para o texto do local (cidade) */
 .alumni-details {
     font-size: 0.9em;
     color: #555;
+    padding-top: 4px; /* Adiciona um pequeno espaço abaixo do nome */
+}
+
+/* Melhora a barra de rolagem (opcional) */
+#alumni-list-container::-webkit-scrollbar {
+    width: 8px;
+}
+#alumni-list-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+#alumni-list-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+#alumni-list-container::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
 }
