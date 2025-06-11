@@ -878,7 +878,7 @@ footer {
   transition: box-shadow 0.3s ease;
   /* Importante: a borda colorida será aplicada pelas classes específicas acima */
   /* Remova qualquer outra borda esquerda padrão se houver */
-  /* border-left: none; */ /* Garante que apenas a borda colorida apareça */
+  border-left: none; /* Garante que apenas a borda colorida apareça */
   margin-bottom: 15px; /* Espaçamento entre os cards na grade */
 }
 

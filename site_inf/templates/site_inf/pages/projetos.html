@@ -42,8 +42,8 @@
     </div>
 
     <div class="project-grid">
-      {% for projeto in projetos %}
-        <div class="project-item" data-tipo="{{ projeto.categoria|lower }}">
+      {% for projeto in projetos %} 
+        <div class="project-item--{{ projeto.categoria|lower }}"> 
           <div class="card">
             {% if projeto.imagem %}
               <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}">
