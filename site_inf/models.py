@@ -89,7 +89,7 @@ class Vaga(models.Model):
     empresa = models.ForeignKey(EmpresaParceira, on_delete=models.CASCADE, related_name='vagas')
     descricao = models.TextField()
     local = models.CharField(max_length=100, blank=True)
-    tipo = models.CharField(max_length=50, choices=[('Estágio', 'Estágio'), ('Emprego', 'Emprego'), ('Trainee', 'Trainee'), ('Outro', 'Outro')])
+    tipo = models.CharField(max_length=50, choices=[('Estágio', 'Estágio'), ('Emprego', 'Emprego'), ('Iniciação Científica', 'Iniciação Científica'), ('Outro', 'Outro')])
     link = models.URLField(blank=True)
     data_publicacao = models.DateField(auto_now_add=True)
     data_expiracao = models.DateField(blank=True, null=True)
