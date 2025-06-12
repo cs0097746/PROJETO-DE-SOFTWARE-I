@@ -1971,3 +1971,80 @@ footer {
 #alumni-list-container::-webkit-scrollbar-thumb:hover {
     background: #aaa;
 }
+
+
+/* Estilos para o container do formulário */
+.form-container {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+/* Estilos para o formulário */
+#update-aluno-form .form-group {
+    margin-bottom: 20px;
+}
+
+#update-aluno-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+#update-aluno-form input[type="text"],
+#update-aluno-form input[type="number"],
+#update-aluno-form input[type="url"],
+#update-aluno-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+#update-aluno-form input:focus,
+#update-aluno-form select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+#update-aluno-form button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#update-aluno-form button:hover {
+    background-color: #0056b3;
+}
+
+#success-message {
+    display: none;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 6px;
+    text-align: center;
+}

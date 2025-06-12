@@ -10,7 +10,7 @@ admin.site.register(TCC)
 
 @admin.register(ExAluno)
 class ExAlunoAdmin(ImportExportModelAdmin):
-    list_display = ('nome', 'curso', 'ano_conclusao', 'empresa_atual', 'latitude', 'longitude')
+    list_display = ('nome', 'curso', 'ano_conclusao', 'empresa_atual', 'latitude', 'longitude', 'linkedin')
     search_fields = ('nome', 'empresa_atual')
     list_filter = ('curso', 'ano_conclusao')
 

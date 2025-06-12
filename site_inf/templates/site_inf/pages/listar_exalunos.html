@@ -4,7 +4,6 @@
 {% block title %}Ex Alunos{% endblock %}
 
 {% block content %}
-
 <div class="map-container-wrapper">
     <div id="map"></div>
     <div id="alumni-list-container">
@@ -16,16 +15,50 @@
                     data-lat="{{ aluno.latitude|unlocalize }}"
                     data-lng="{{ aluno.longitude|unlocalize }}"
                     data-nome="{{ aluno.nome }}"
-                    data-empresa="{{ aluno.empresa_atual|default:'' }}">
-                    <strong>{{ aluno.nome }}</strong>
+                    data-empresa="{{ aluno.empresa_atual|default:'' }}"
+                    data-linkedin="{{ aluno.linkedin|default:'' }}"
+                    data-ano="{{ aluno.ano_conclusao }}">
+                    <strong>{{ aluno.nome }} - {{ aluno.ano_conclusao }}</strong>
                     <div class="alumni-details">{{ aluno.empresa_atual|default:'Empresa não informada' }}</div>
-
                 </li>
             {% empty %}
-                <li>Nenhum ex-aluno com localização cadastrada.</li>
+                <li id="no-alumni-message">Nenhum ex-aluno com localização cadastrada.</li>
             {% endfor %}
         </ul>
     </div>
+</div>
+
+<!-- Seção do Formulário de Atualização -->
+<div class="form-container">
+    <h2>Ex-aluno, atualize seus dados</h2>
+    <form id="update-aluno-form">
+        {% csrf_token %} <!-- Medida de segurança -->
+        <div class="form-group">
+            <label for="nome">Nome Completo *</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+        <div class="form-group">
+            <label for="curso">Curso *</label>
+            <select id="curso" name="curso" required>
+                <option value="SI">Sistemas de Informação</option>
+                <option value="CC">Ciência da Computação</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ano_conclusao">Ano de Conclusão *</label>
+            <input type="number" id="ano_conclusao" name="ano_conclusao" min="1990" max="2099" required>
+        </div>
+        <div class="form-group">
+            <label for="empresa_atual">Empresa em que trabalha atualmente</label>
+            <input type="text" id="empresa_atual" name="empresa_atual">
+        </div>
+        <div class="form-group">
+            <label for="linkedin">URL do seu Perfil no LinkedIn</label>
+            <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/seu-perfil">
+        </div>
+        <button type="submit">Enviar Dados</button>
+    </form>
+    <div id="success-message">Dados enviados com sucesso! A página será atualizada.</div>
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -39,45 +72,19 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    setTimeout(function() {
-    map.invalidateSize();
-    }, 0);
+    setTimeout(() => map.invalidateSize(), 0);
 
     const markers = {};
-    const alumniListItems = document.querySelectorAll('.alumnus-item');
-    alumniListItems.forEach(item => {
-        const lat = parseFloat(item.dataset.lat);
-        const lng = parseFloat(item.dataset.lng);
-        const alunoId = item.dataset.id;
-        const nome = item.dataset.nome;
-        const empresa = item.dataset.empresa;
-        const cidade = item.dataset.cidade;
-        const linkedin = item.dataset.linkedin;
+    const alumniList = document.getElementById('alumni-list');
 
-        if (!isNaN(lat) && !isNaN(lng)) {
-            const marker = L.marker([lat, lng]).addTo(map);
-            let popupContent = `<strong>${nome}</strong>`;
-            if (empresa) {
-                popupContent += `<br>${empresa}`;
-            }
-            if (cidade) {
-                popupContent += `<br>${cidade}`;
-            }
-            if (linkedin) {
-                popupContent += `<br><a href="${linkedin}" target="_blank">LinkedIn</a>`;
-            }
-            marker.bindPopup(popupContent);
-            markers[alunoId] = marker;
-        }
-    });
-
-    alumniListItems.forEach(item => {
+    // Função para adicionar interatividade a um item da lista
+    function addListItemInteraction(item) {
         item.addEventListener('click', function() {
             const lat = parseFloat(this.dataset.lat);
             const lng = parseFloat(this.dataset.lng);
             const alunoId = this.dataset.id;
 
-            alumniListItems.forEach(i => i.classList.remove('selected'));
+            document.querySelectorAll('.alumnus-item').forEach(i => i.classList.remove('selected'));
             this.classList.add('selected');
 
             if (!isNaN(lat) && !isNaN(lng)) {
@@ -86,9 +93,79 @@
                     markers[alunoId].openPopup();
                 }
             } else {
-                console.warn("Coordenadas inválidas para o aluno: ", this.textContent);
+                map.setView([-29.7169, -53.7149], 5);
+                console.warn("Coordenadas inválidas ou ausentes para o aluno: ", this.dataset.nome);
             }
         });
+    }
+    
+    // Processa os alunos iniciais carregados com a página
+    document.querySelectorAll('.alumnus-item').forEach(item => {
+        const lat = parseFloat(item.dataset.lat);
+        const lng = parseFloat(item.dataset.lng);
+        const alunoId = item.dataset.id;
+
+        if (!isNaN(lat) && !isNaN(lng)) {
+            const marker = L.marker([lat, lng]).addTo(map);
+            let popupContent = `<strong>${item.dataset.nome}</strong>`;
+            if (item.dataset.empresa) popupContent += `<br>${item.dataset.empresa}`;
+            if (item.dataset.linkedin) popupContent += `<br><a href="${item.dataset.linkedin}" target="_blank" rel="noopener noreferrer">Perfil no LinkedIn</a>`;
+            marker.bindPopup(popupContent);
+            markers[alunoId] = marker;
+        }
+        addListItemInteraction(item);
     });
+
+    // --- LÓGICA ATUALIZADA PARA O FORMULÁRIO ---
+    const updateForm = document.getElementById('update-aluno-form');
+    const successMessage = document.getElementById('success-message');
+
+    updateForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Pega o token CSRF do formulário
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        
+        // Coleta os dados do formulário
+        const formData = {
+            nome: document.getElementById('nome').value,
+            curso: document.getElementById('curso').value,
+            ano_conclusao: document.getElementById('ano_conclusao').value,
+            empresa_atual: document.getElementById('empresa_atual').value,
+            linkedin: document.getElementById('linkedin').value,
+        };
+
+        // Envia os dados para o backend via fetch
+        fetch('/api/cadastrar-ex-aluno/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken // Envia o token CSRF
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // Limpa o formulário e exibe mensagem de sucesso.
+                updateForm.reset();
+                successMessage.style.display = 'block';
+                
+                // MUDANÇA PRINCIPAL: Recarrega a página após 2 segundos
+                // para exibir a lista atualizada do servidor.
+                setTimeout(() => {
+                    location.reload();
+                }, 2000); 
+            } else {
+                // Exibe erro se algo falhar no backend
+                alert('Ocorreu um erro: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao enviar formulário:', error);
+            alert('Não foi possível se conectar ao servidor.');
+        });
+    });
+
 </script>
 {% endblock %}

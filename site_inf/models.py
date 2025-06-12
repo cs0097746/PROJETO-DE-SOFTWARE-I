@@ -61,6 +61,7 @@ class ExAluno(models.Model):
     empresa_atual = models.CharField(max_length=200, blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
+    linkedin = models.URLField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.nome

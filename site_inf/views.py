@@ -3,6 +3,10 @@ from .models import Evento, PostBlog, Projeto, ExAluno, Professor, EmpresaParcei
 from datetime import date
 from django.utils.html import escapejs
 import json
+import json
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     posts = PostBlog.objects.all().order_by('-id')
@@ -114,3 +118,39 @@ def pagina_publicacoes(request):
         'anos_unicos': anos_unicos, # Para iterar e criar seções por ano
     }
     return render(request, 'site_inf/pages/publicacoes.html', context)
+
+@require_POST # Garante que esta view só aceita requisições POST
+def cadastrar_ex_aluno(request):
+    try:
+        # Pega os dados enviados via JavaScript (em formato JSON)
+        data = json.loads(request.body)
+        
+        # Cria a nova instância do ExAluno no banco de dados
+        novo_aluno = ExAluno.objects.create(
+            nome=data.get('nome'),
+            curso=data.get('curso'),
+            ano_conclusao=data.get('ano_conclusao'),
+            empresa_atual=data.get('empresa_atual'),
+            linkedin=data.get('linkedin'),
+            # Latitude e Longitude não são coletadas no formulário, então ficam nulas
+            latitude=None, 
+            longitude=None,
+        )
+
+        # Prepara uma resposta de sucesso para o JavaScript
+        response_data = {
+            'status': 'success',
+            'message': 'Ex-aluno cadastrado com sucesso!',
+            'aluno': { # Envia os dados do aluno criado de volta para o frontend
+                'id': novo_aluno.id,
+                'nome': novo_aluno.nome,
+                'ano_conclusao': novo_aluno.ano_conclusao,
+                'empresa_atual': novo_aluno.empresa_atual,
+                'linkedin': novo_aluno.linkedin
+            }
+        }
+        return JsonResponse(response_data, status=201)
+
+    except Exception as e:
+        # Em caso de erro, retorna uma mensagem de falha
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
