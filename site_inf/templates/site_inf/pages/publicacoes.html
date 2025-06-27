@@ -23,19 +23,18 @@
               <p class="publication-venue">{{ publicacao.evento_ou_revista }}.</p>
               <nav class="publication-links">
                 {% if publicacao.link_bibtex %}
-                  <a href="{{ publicacao.link_bibtex }}" target="_blank" class="pub-link">[BibTeX]</a>
+                  <a href="{{ publicacao.link_bibtex }}" target="_blank" class="btn-link">BibTeX</a>
                 {% endif %}
                 {% if publicacao.link_pdf %}
-                  <a href="{{ publicacao.link_pdf }}" target="_blank" class="pub-link">[PDF]</a>
+                  <a href="{{ publicacao.link_pdf }}" target="_blank" class="btn-link">PDF</a>
                 {% endif %}
                 {% if publicacao.link_doi %}
-                  <a href="{{ publicacao.link_doi }}" target="_blank" class="pub-link">[DOI]</a>
+                  <a href="{{ publicacao.link_doi }}" target="_blank" class="btn-link">DOI</a>
                 {% endif %}
                 {% if publicacao.link_outro %}
-                  <a href="{{ publicacao.link_outro }}" target="_blank" class="pub-link">[Mais Informações]</a> 
-                  {# Ou [App], [Código], etc., dependendo do que for o link_outro #}
+                  <a href="{{ publicacao.link_outro }}" target="_blank" class="btn-link">Mais Informações</a>
                 {% endif %}
-              </nav>
+              </nav>    
             </article>
             {% endif %}
           {% endfor %}

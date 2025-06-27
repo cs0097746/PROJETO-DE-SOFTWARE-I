@@ -1,22 +1,40 @@
 {% extends "site_inf/base.html" %}
+{% load static %}
+
+{% block title %}Empresas Parceiras{% endblock %}
+
 {% block content %}
 <section class="empresas-section">
   <div class="container">
     <div class="page-main-title"><h2>Empresas Parceiras da UFSM</h2></div>
     <div class="empresas-grid">
       {% for empresa in empresas %}
-        <div class="empresa-card">
+        <div class="empresa-container">
+
           {% if empresa.logo %}
-            <img src="{{ empresa.logo.url }}" alt="{{ empresa.nome }}">
+            <div class="empresa-card">
+              <img src="{{ empresa.logo.url }}" alt="{{ empresa.nome }}">
+            </div>
           {% endif %}
-          <h3>{{ empresa.nome }}</h3>
-          <p>{{ empresa.descricao }}</p>
-          {% if empresa.site %}
-            <a href="{{ empresa.site }}" target="_blank" class="btn">Site</a>
-          {% endif %}
-          {% if empresa.contato %}
-            <p class="contato">Contato: {{ empresa.contato }}</p>
-          {% endif %}
+
+          <!-- Nome, seta e botão alinhados à esquerda -->
+          <div class="empresa-info">
+            <div class="empresa-header">
+              <h3>{{ empresa.nome }}</h3>
+              <button class="toggle-desc" onclick="toggleDescricao(this)">
+                &#9660;
+              </button>
+            </div>
+
+            <p class="empresa-descricao hidden">
+              {{ empresa.descricao|default:"Descrição não disponível." }}
+            </p>
+
+            {% if empresa.site %}
+              <a href="{{ empresa.site }}" target="_blank" class="btn">Visitar Site</a>
+            {% endif %}
+          </div>
+
         </div>
       {% empty %}
         <p>Nenhuma empresa parceira cadastrada ainda.</p>
@@ -24,4 +42,12 @@
     </div>
   </div>
 </section>
+
+<script>
+function toggleDescricao(button) {
+  const desc = button.parentElement.nextElementSibling;
+  desc.classList.toggle('hidden');
+  button.innerHTML = desc.classList.contains('hidden') ? '&#9660;' : '&#9650;';
+}
+</script>
 {% endblock %}

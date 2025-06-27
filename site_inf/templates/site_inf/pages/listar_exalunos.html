@@ -20,9 +20,12 @@
                     data-ano="{{ aluno.ano_conclusao }}">
                     <strong>{{ aluno.nome }} - {{ aluno.ano_conclusao }}</strong>
                     <div class="alumni-details">{{ aluno.empresa_atual|default:'Empresa não informada' }}</div>
+                    {% if aluno.linkedin %}
+                        <a href="{{ aluno.linkedin }}" target="_blank" rel="noopener noreferrer">Perfil no LinkedIn</a>
+                    {% endif %}
                 </li>
             {% empty %}
-                <li id="no-alumni-message">Nenhum ex-aluno com localização cadastrada.</li>
+                <li id="no-alumni-message">Nenhum ex-aluno cadastrado.</li>
             {% endfor %}
         </ul>
     </div>
@@ -101,9 +104,9 @@
     
     // Processa os alunos iniciais carregados com a página
     document.querySelectorAll('.alumnus-item').forEach(item => {
+        const alunoId = item.dataset.id;
         const lat = parseFloat(item.dataset.lat);
         const lng = parseFloat(item.dataset.lng);
-        const alunoId = item.dataset.id;
 
         if (!isNaN(lat) && !isNaN(lng)) {
             const marker = L.marker([lat, lng]).addTo(map);
@@ -116,7 +119,6 @@
         addListItemInteraction(item);
     });
 
-    // --- LÓGICA ATUALIZADA PARA O FORMULÁRIO ---
     const updateForm = document.getElementById('update-aluno-form');
     const successMessage = document.getElementById('success-message');
 
