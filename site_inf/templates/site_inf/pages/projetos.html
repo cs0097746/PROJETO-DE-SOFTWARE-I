@@ -43,7 +43,7 @@
 
     <div class="project-grid">
       {% for projeto in projetos %} 
-        <div class="project-item project-item--{{ projeto.categoria|lower }}"> 
+        <div class="project-item--{{ projeto.categoria|lower }}"> 
           <div class="card">
             {% if projeto.imagem %}
               <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}">

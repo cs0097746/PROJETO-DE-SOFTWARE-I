@@ -1726,14 +1726,14 @@ footer {
   transform: translateY(-50%); /* Centraliza verticalmente o ponto de origem do logo */
   left: 20px; /* Distância da esquerda */
 
-  top: 100px;
+  top: 80px;
   left: 50px;
 
   z-index: 10; /* Garante que o logo fique por cima de outros elementos do header, se necessário */
 }
 
 #logo-principal { /* Sua tag <img> do logo */
-  height: 200px; /* ALTURA DESEJADA PARA O LOGO (maior que a do header) */
+  height: 175px; /* ALTURA DESEJADA PARA O LOGO (maior que a do header) */
   width: auto;   /* Mantém a proporção */
   display: block; /* Remove espaços extras que tags <img> inline podem ter */
 }
