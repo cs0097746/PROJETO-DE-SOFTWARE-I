@@ -82,11 +82,11 @@
       <!-- Título "Notícias" com o mesmo estilo da seção -->
       <section class="noticias">
           <div class="container">
-              <h2>Notícias e Projetos</h2>
-              <p>Fique por dentro das últimas novidades e projetos desenvolvidos.</p>
+              <h2>Notícias e Eventos</h2>
+              <p>Fique por dentro das últimas novidades.</p>
           </div>
       </section>
-  
+
       <!-- Seção carrossel -->
       <div class="slider">
         <div class="list">
@@ -191,8 +191,9 @@
                 {% endif %}
               </div>
               <div class="card-content">
-                <h3 class="card-title">{{ projeto.titulo }}</h3>
-                <p class="card-description">{{ projeto.descricao|truncatewords:20 }}</p>
+                <h3>{{ projeto.titulo }}</h3>
+                <p class="tech"><strong>Tecnologias:</strong> {{ projeto.tecnologias }}</p>
+                <p>{{ projeto.descricao|truncatewords:25 }}</p>
                 <a href="{% url 'site_inf:projeto_detail' projeto.id %}" class="btn">Saiba Mais</a>
               </div>
             </div>

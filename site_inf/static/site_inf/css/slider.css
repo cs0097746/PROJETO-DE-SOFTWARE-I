@@ -7,7 +7,7 @@
     overflow: hidden;
 }
 .slider .list{
-    margin-top : 10px;
+    margin-top : 5px;
     position: absolute;
     width: max-content;
     height: 100%;
@@ -89,7 +89,8 @@
     bottom: 40px;
     left: 40px;
     color: white;
-    background-color: rgba(0, 0, 0, 0.5); /* fundo escuro transparente */
+    /* fundo escuro menos transparente */
+    background-color: rgba(0, 0, 0, 0.4);
     padding: 20px;
     border-radius: 10px;
     max-width: 70%;
