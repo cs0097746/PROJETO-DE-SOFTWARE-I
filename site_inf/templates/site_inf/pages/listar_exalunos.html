@@ -21,7 +21,7 @@
                     <strong>{{ aluno.nome }} - {{ aluno.ano_conclusao }}</strong>
                     <div class="alumni-details">{{ aluno.empresa_atual|default:'Empresa não informada' }}</div>
                     {% if aluno.linkedin %}
-                        <a href="{{ aluno.linkedin }}" target="_blank" rel="noopener noreferrer">Perfil no LinkedIn</a>
+                        <a class="btn-link" href="{{ aluno.linkedin }}" target="_blank" rel="noopener noreferrer">Perfil no LinkedIn</a>
                     {% endif %}
                 </li>
             {% empty %}

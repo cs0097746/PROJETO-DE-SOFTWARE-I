@@ -48,7 +48,7 @@
             {% if projeto.imagem %}
               <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}">
             {% endif %}
-            <div class="card-body">
+            <div class="card-content">
               <h3>{{ projeto.titulo }}</h3>
               <p class="tech"><strong>Tecnologias:</strong> {{ projeto.tecnologias }}</p>
               <p>{{ projeto.descricao|truncatewords:25 }}</p>

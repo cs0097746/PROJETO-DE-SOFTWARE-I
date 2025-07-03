@@ -81,9 +81,8 @@ def empresas_parceiras(request):
     return render(request, 'site_inf/pages/empresas_parceiras.html', {'empresas': empresas})
 
 def listar_vagas(request):
-    vagas = Vaga.objects.filter(
-        data_expiracao__gte=date.today()
-    ).order_by('-data_publicacao')
+    # Agora busca todas as vagas, sem filtrar por data de expiração
+    vagas = Vaga.objects.all().order_by('-data_publicacao') 
     return render(request, 'site_inf/pages/listar_vagas.html', {'vagas': vagas})
 
 def tcc_computacao(request):
