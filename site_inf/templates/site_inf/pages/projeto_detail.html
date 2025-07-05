@@ -19,7 +19,7 @@
       <p class="detail-description">{{ projeto.descricao }}</p>
       <div class="detail-buttons">
         {% if projeto.link %}
-          <a href="{{ projeto.link }}" target="_blank" class="btn">Ver no GitHub</a>
+          <a href="{{ projeto.link }}" target="_blank" class="btn">Ver Projeto</a>
         {% endif %}
         <a href="{% url 'site_inf:projetos' %}" class="btn btn-back">← Voltar</a>
       </div>

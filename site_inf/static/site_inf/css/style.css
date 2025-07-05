@@ -377,44 +377,101 @@ header {
 .projects {
   padding: 60px 0;
   background: #f9f9f9;
-  text-align: center;
 }
-
-.projects h2 {
-  font-size: 2rem;
+.page-main-title {
+  text-align: center;
   margin-bottom: 40px;
 }
 
+/* === GRID CONTAINER === */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 0 5%;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* === ESTILO DO CARD PRINCIPAL (.project-item) === */
 .project-item {
   background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: box-shadow 0.3s;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  overflow: hidden; /* Importante para o border-radius da imagem */
+  transition: box-shadow 0.3s, transform 0.2s;
+
+  /* Flexbox para alinhar o conteúdo interno verticalmente */
+  display: flex;
+  flex-direction: column;
 }
 
 .project-item:hover {
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
 }
 
-.project-item img {
+/* === BORDAS COLORIDAS POR CATEGORIA === */
+.project-item--ensino {
+  border-left: 6px solid #3498db; /* Azul */
+}
+.project-item--extensao {
+  border-left: 6px solid #2ecc71; /* Verde */
+}
+.project-item--pesquisa {
+  border-left: 6px solid #f1c40f; /* Amarelo */
+}
+
+/* === ELEMENTOS INTERNOS DO CARD === */
+.project-item__image {
   width: 100%;
-  height: auto;
+  height: 180px; /* Altura fixa para a imagem */
+  object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
 }
 
-.project-content {
+.project-item__content {
   padding: 20px;
+  text-align: left;
+  
+  /* Flexbox para o conteúdo interno, garantindo que o botão fique no final */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Faz esta div ocupar todo o espaço restante do card */
 }
 
-.project-content h3 {
+.project-item__content h3 {
+  margin-top: 0;
   margin-bottom: 10px;
+  color: #004080;
+}
+
+.project-item__content .tech {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.project-item__description {
+  /* Ocupa o espaço disponível, empurrando o botão para baixo */
+  flex-grow: 1; 
+  margin-bottom: 20px;
+}
+
+.project-item__content .btn {
+  /* Alinha o botão no final do container flexível */
+  margin-top: auto; 
+  align-self: flex-start; /* Alinha o botão à esquerda */
+
+  background-color: #004080;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.project-item__content .btn:hover {
+  background-color: #0059b3;
 }
 
 /* Seção Redes Sociais */
@@ -686,25 +743,6 @@ footer {
   opacity: 0.85;
 }
 
-.projects {
-  padding: 60px 0 80px 0;
-  background: #f9f9f9;
-  text-align: center;
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 32px;
-  margin-bottom: 48px; /* Espaço extra abaixo da grid */
-}
-
-.project-item {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
 .card {
   display: flex;
   flex-direction: column;
@@ -845,8 +883,8 @@ footer {
 
 /* Cores para as caixas da legenda (e serão usadas para as bordas dos cards) */
 .legend-color-box--ensino,
-.project-item--ensino .card { /* Aplica a borda ao card dentro do project-item da categoria */
-  border-left: 7px solid #3498db; /* Azul para Ensino - borda mais grossa */
+.project-item--ensino { /* A borda agora é no container de fora */
+  border-left: 7px solid #3498db;
 }
 .legend-color-box--ensino {
   background-color: #3498db; /* Cor de fundo para a caixa da legenda */
@@ -854,76 +892,19 @@ footer {
 
 
 .legend-color-box--extensao,
-.project-item--extensao .card {
-  border-left: 7px solid #2ecc71; /* Verde para Extensão */
+.project-item--extensao {
+  border-left: 7px solid #2ecc71;
 }
 .legend-color-box--extensao {
   background-color: #2ecc71;
 }
 
-
 .legend-color-box--pesquisa,
-.project-item--pesquisa .card {
-  border-left: 7px solid #f1c40f; /* Amarelo para Pesquisa */
+.project-item--pesquisa {
+  border-left: 7px solid #f1c40f;
 }
 .legend-color-box--pesquisa {
   background-color: #f1c40f;
-}
-
-
-/* --- Estilo do Card do Projeto --- */
-.project-item .card {
-  background-color: #fff; /* Fundo branco para os cards */
-  border-radius: 8px;     /* Cantos arredondados para o card */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil */
-  transition: box-shadow 0.3s ease;
-  /* Importante: a borda colorida será aplicada pelas classes específicas acima */
-  /* Remova qualquer outra borda esquerda padrão se houver */
-  border-left: none; /* Garante que apenas a borda colorida apareça */
-  margin-bottom: 15px; /* Espaçamento entre os cards na grade */
-}
-
-.project-item .card:hover {
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.project-category-text {
-    font-size: 0.9em;
-    color: #555; /* Cor para o texto "Tipo:" */
-    margin-bottom: 10px;
-}
-
-.project-category-text strong {
-    color: #333;
-}
-
-/* Certifique-se que o seu .project-grid lide bem com os cards */
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Exemplo de layout responsivo */
-  gap: 20px;
-}
-
-/* Projeto Detail Moderno e Centralizado */
-.project-detail-section {
-  padding: 60px 0;
-  background: #f4f8fb;
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.project-detail-container {
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 6px 32px rgba(0,0,0,0.12);
-  padding: 36px 28px 32px 28px;
-  max-width: 420px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .detail-img {
@@ -1435,7 +1416,7 @@ footer {
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
   transition: box-shadow 0.3s, transform 0.2s;
   position: relative;
   overflow: hidden;
@@ -1480,8 +1461,8 @@ footer {
 .vaga-info {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 6px;
+  gap: 10px;
+  margin-bottom: 0px;
   align-items: center;
 }
 .vaga-tipo {
@@ -1515,16 +1496,19 @@ footer {
 }
 
 .vaga-titulo {
-  margin: 0 0 6px 0;
+  margin-bottom: -6px;
+  margin-top: -8px;
   color: #004080;
   font-size: 1.22rem;
   font-weight: 700;
 }
 .vaga-descricao {
   color: #444;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-size: 1.05rem;
+  flex-grow: 1;
 }
+
 .btn-vaga {
   align-self: flex-start;
   background: linear-gradient(90deg, #004080 60%, #008080 100%);
@@ -1568,7 +1552,7 @@ footer {
     grid-template-columns: 1fr;
   }
   .vaga-card {
-    padding: 18px 6px 16px 6px;
+    padding: 15px 4px 12px 4px;
   }
   .empresa-logo-circular {
     width: 38px;
@@ -2009,7 +1993,8 @@ footer {
 .alumni-details {
     font-size: 0.9em;
     color: #555;
-    padding-top: 4px; /* Adiciona um pequeno espaço abaixo do nome */
+    padding-top: 4px; 
+    padding-bottom: 4px;/* Adiciona um pequeno espaço abaixo do nome */
 }
 
 /* Melhora a barra de rolagem (opcional) */

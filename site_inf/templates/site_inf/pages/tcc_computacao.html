@@ -16,9 +16,11 @@
         <div class="tcc-card">
           <h3 class="tcc-title">{{ tcc.titulo }}</h3>
           <p class="tcc-description">{{ tcc.descricao }}</p>
-          <p><strong>Autor:</strong> {{ tcc.autor }}</p>
-          <p><strong>Ano:</strong> {{ tcc.ano }}</p>
-          <p><strong>Palavras-chave:</strong> {{ tcc.palavras_chave }}</p>
+          <p>
+              <strong>Autor:</strong> {{ tcc.autor }}<br>
+              <strong>Ano:</strong> {{ tcc.ano }}<br>
+              <strong>Palavras-chave:</strong> {{ tcc.palavras_chave }}
+          </p>
           
           {% if tcc.link %}
             <a href="{{ tcc.link }}" target="_blank" class="tcc-button">Acessar Link Externo</a>
