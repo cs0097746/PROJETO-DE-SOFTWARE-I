@@ -75,8 +75,6 @@
 
   if (!searchInput) console.error("Barra de pesquisa ('searchInputProj') não encontrada!");
   if (!filterToggleButton) console.error("Botão de filtro ('filterToggleButton') não encontrado!");
-  if (!filterOptions) console.error("Div de opções de filtro ('filterOptions') não encontrada!");
-  if (filterOptionLinks.length === 0) console.warn("Nenhuma opção de filtro ('.filter-option') encontrada.");
   if (projectItems.length === 0 && document.querySelector(".project-grid")) {
     console.warn("Nenhum '.project-item' encontrado para filtrar.");
   }
@@ -84,16 +82,21 @@
   function applyFilters() {
     const searchTerm = searchInput.value.toLowerCase().trim();
     projectItems.forEach(item => {
-      const cardElement = item.querySelector('.card');
+
+      const contentElement = item.querySelector('.project-item__content');
       let textContentOfCard = "";
-      if (cardElement) {
-        textContentOfCard = (cardElement.textContent || cardElement.innerText || "").toLowerCase();
+
+      if (contentElement) {
+        textContentOfCard = (contentElement.textContent || contentElement.innerText || "").toLowerCase();
       }
-      const itemTipo = item.dataset.tipo;
+
+      const itemTipo = item.dataset.tipo || item.className.split(' ')[1].split('--')[1];
+
       const matchesSearchTerm = searchTerm === "" || textContentOfCard.includes(searchTerm);
       const matchesTipo = currentSelectedTipo === "todos" || itemTipo === currentSelectedTipo;
+
       if (matchesSearchTerm && matchesTipo) {
-        item.style.display = "flex"; 
+        item.style.display = ""; // Usa o display padrão do CSS em vez de forçar 'flex'
       } else {
         item.style.display = "none";
       }
@@ -104,6 +107,7 @@
     searchInput.addEventListener("input", applyFilters);
   }
 
+  // O resto do seu código para os filtros de botão continua o mesmo
   if (filterToggleButton) {
     filterToggleButton.addEventListener("click", function (event) {
       event.stopPropagation();
